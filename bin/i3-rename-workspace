@@ -87,6 +87,7 @@ WINDOW_ICONS = {
     'slack': fa.icons['slack'],
     'slic3r.pl': fa.icons['cube'],
     'spotify': fa.icons['spotify'],  # could also use the 'spotify' icon
+    'st': fa.icons['terminal'],
     'station': fa.icons['comments'],
     'steam': fa.icons['steam'],
     'subl': fa.icons['file-alt'],
@@ -101,6 +102,7 @@ WINDOW_ICONS = {
     'yelp': fa.icons['code'],
     'zenity': fa.icons['window-maximize'],
     'zoom': fa.icons['video'],
+    'zathura': fa.icons['file-alt'],
 }
 
 # This icon is used for any application not in the list above
