@@ -16,13 +16,14 @@ main() {
   #   sleep 1;
   # done
 
-  killall -q polybar picom feh dunst xautolock xcompmgr nm-applet
+  killall -q polybar picom feh dunst xautolock xcompmgr nm-applet blueman-applet
   feh --no-xinerama --bg-scale $HOME/.wallpapers/gruvbox.png &
 
   polybar -r top &
 
   dunst &
   nm-applet &
+  blueman-applet &
 
   # dropbox-run start
   # xbanish &
