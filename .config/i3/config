@@ -245,3 +245,4 @@ title_align center
 
 assign [class="zoom"] workspace number 4
 for_window [window_role="About"] floating enable
+for_window [window_role="pop-up"] floating enable
