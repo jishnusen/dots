@@ -31,10 +31,9 @@ main() {
   # picom -b --experimental-backends
   xcompmgr -c -l0 -t0 -r0 -o.00 &
 
-  sleep 5
+  sleep 1
 
-  setxkbmap -option caps:swapescape &
-  setxkbmap -option altwin:swap_alt_win &
+  setxkbmap -option caps:swapescape -option altwin:swap_alt_win &
 
   xautolock -detectsleep \
     -corners ---- \
