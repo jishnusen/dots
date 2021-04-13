@@ -384,12 +384,8 @@ margin-bottom = 5
 
 [module/spotify]
 type = custom/script
-exec = ~/.config/polybar/spotify.sh
-exec-if = pgrep -x spotify
-tail = true
-; interval = 0
-format-prefix =
-format-padding = 1
+interval = 1
+exec = ~/.config/polybar/spotify_status.py -f '{play_pause} {artist} - {song}'
 
 [module/packages]
 type = custom/script
