@@ -1,10 +1,6 @@
 #!/bin/bash
 
 main() {
-  if ! pgrep -x spotify >/dev/null; then
-    echo ""; exit
-  fi
-
   artist=$(playerctl metadata artist)
   title=$(playerctl metadata title)
   status=$(playerctl status)
@@ -17,10 +13,4 @@ main() {
   echo
 }
 
-trap main USR1
-
-while true; do
-  main "$@"
-  sleep 5 &
-  wait $!
-done
+main "$@"

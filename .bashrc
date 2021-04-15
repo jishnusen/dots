@@ -291,6 +291,7 @@ alias v=csv
 alias o=xdg-open
 alias open=o
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/.git/ --work-tree=$HOME'
+alias mongofrk='mongod --fork --logpath /var/log/mongodb/mongod.log'
 export HISTCONTROL=ignoredups
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 

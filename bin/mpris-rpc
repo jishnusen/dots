@@ -1,0 +1,138 @@
+#!/bin/bash
+# Title: mpris-rpc
+# Author: simonizor
+# Description: A wrapper for EasyRP (https://github.com/Pizzabelly/EasyRP) that tracks MPRIS playing status
+# License: MIT
+# Dependencies: curl, playerctl
+
+# set ClientID
+export ERP_CLIENTID="575056170788585472"
+# set EasyRP directory
+export ERP_DIR="$HOME/.local/share/mpris-rpc"
+# set lock file location
+export ERP_LOCK_FILE="/tmp/.mpris-rpc-8675309.lock"
+# function to write EasyRP's config file with variables from mpris.get_status function
+mpris.write_config() {
+cat > "$ERP_DIR"/config.ini << EOL
+[Identifiers]
+ClientID=$ERP_CLIENTID
+
+[State]
+State=$1​​
+Details=$2​​
+StartTimestamp=$3
+EndTimestamp=$4
+
+[Images]
+LargeImage=playerlarge
+LargeImageTooltip=$5
+SmallImage=$6
+SmallImageTooltip=$6
+EOL
+}
+# function to create directory and download EasyRP if does not exist
+mpris.get_easyrp() {
+    if [[ ! -d "$ERP_DIR" || ! -f "$ERP_DIR/easyrp" ]]; then
+        echo "EasyRP not found in '$ERP_DIR'. Downloading now..."
+        rm -rf "$ERP_DIR"
+        # create directories
+        mkdir -p "$ERP_DIR"
+        mkdir -p "$HOME"/.cache
+        # download EasyRP tar.gz from releases page
+        curl -sL "https://github.com/Pizzabelly/EasyRP/releases/download/v3.0/EasyRP-v3.0-linux.tar.gz" -o "$HOME"/.cache/EasyRP-linux.tar.gz || \
+        { echo "EasyRP download failed!"; rm -rf "$ERP_DIR"; exit 1; }
+        cd "$ERP_DIR"
+        # extract EasyRP
+        tar xzf "$HOME"/.cache/EasyRP-linux.tar.gz -C "$ERP_DIR" || \
+        { echo "Failed to extract EasyRP!"; rm -rf "$ERP_DIR"; exit 1; }
+        mv "$ERP_DIR"/EasyRP-v3.0-linux/* "$ERP_DIR"/
+        rm -rf "$ERP_DIR"/EasyRP-v3.0-linux
+        rm -f "$HOME"/.cache/EasyRP-linux.tar.gz
+        if [[ ! -f "$ERP_DIR/easyrp" ]]; then
+            echo "EasyRP download failed!"
+            rm -rf "$ERP_DIR"
+            exit 1
+        else
+            chmod +x "$ERP_DIR"/easyrp
+        fi
+        # create initial config file
+        mpris.write_config "mpris-rpc" "" "" "" "playerlarge"
+    fi
+}
+# function to get player status using playerctrl
+mpris.get_status() {
+    mapfile -t ERP_NOW_PLAYING < <(playerctl  metadata --format '{{playerName}}|{{lc(status)}}|{{artist}}|{{title}}|{{position}}|{{mpris:length}}' | tr '|' '\n')
+    if [[ "${ERP_NOW_PLAYING[1]}" == "playing" ]]; then
+        ERP_TIME_START=$(date +%s)
+        ERP_PLAYER_REMAINS=$((${ERP_NOW_PLAYING[5]}-${ERP_NOW_PLAYING[4]}))
+        ERP_PLAYER_REMAINS=$((ERP_PLAYER_REMAINS/1000000))
+        ERP_TIME_END=$((ERP_TIME_START+ERP_PLAYER_REMAINS))
+    else
+        ERP_TIME_START=""
+        ERP_TIME_END=""
+    fi
+    if [[ ! -z "${ERP_NOW_PLAYING[3]}" && "${ERP_NOW_PLAYING[3]}" != "$ERP_LAST_PLAYING" || "${ERP_NOW_PLAYING[1]}" != "$ERP_LAST_STATE" ]]; then
+        mpris.write_config "${ERP_NOW_PLAYING[3]}" "${ERP_NOW_PLAYING[2]}" "$ERP_TIME_START" "$ERP_TIME_END" "${ERP_NOW_PLAYING[0]}" "${ERP_NOW_PLAYING[1]}"
+    fi
+    ERP_LAST_PLAYING="${ERP_NOW_PLAYING[3]}"
+    ERP_LAST_STATE="${ERP_NOW_PLAYING[1]}"
+    sleep 1
+    unset ERP_NOW_PLAYING ERP_TIME_TYPE ERP_TIME_END ERP_PLAYER_REMAINS
+}
+# function to start EasyRP and while loop that checks window title
+mpris.easyrp_start() {
+    cd "$ERP_DIR"
+    rm -f "$ERP_DIR"/nohup.out
+    LD_LINUX_LOC="$(ldd $ERP_DIR/easyrp | grep 'ld-linux' | awk '{print $3}')"
+    case "$LD_LINUX_LOC" in
+        /*) $LD_LINUX_LOC ./easyrp >& ./nohup.out &;;
+        *) ./easyrp >& ./nohup.out &;;
+    esac
+    ERP_PID=$!
+    # make sure EasyRP started and create lock file
+    case $? in
+        0) disown; touch "$ERP_LOCK_FILE";;
+        *) exit 1;;
+    esac
+    # run loop to check title while lock file exists
+    while [[ -f "$ERP_LOCK_FILE" ]]; do
+        mpris.get_status
+        sleep 1
+    done
+    # kill EasyRP if lock file no longer exists
+    kill $ERP_PID || true
+}
+# detect arguments
+case "$1" in
+    stop) 
+        if [[ -f "$ERP_LOCK_FILE" ]]; then
+            echo "Killing EasyRP and exiting..."
+            rm -f "$ERP_LOCK_FILE"
+        else
+            echo "mpris-rpc is not running!"
+            exit 1
+        fi
+        ;;
+    *) 
+        if [[ ! -f "$ERP_LOCK_FILE" && ! "$(ps aux | grep '\./easyrp' | grep -vq grep)" ]]; then
+            echo "Starting mpris-rpc..."
+            # run function to make sure EasyRP is in ERP_DIR
+            mpris.get_easyrp
+            # start EasyRP
+            mpris.easyrp_start & disown
+            sleep 0.5
+            if [[ -f "$ERP_LOCK_FILE" ]]; then
+                echo "mpris-rpc started:"
+                cat "$ERP_DIR"/config.ini
+                exit 0
+            else
+                echo "Failed to start EasyRP:"
+                cat "$ERP_DIR"/nohup.out
+                exit 1
+            fi
+        else
+            echo "EasyRP is already running or lock file '$ERP_LOCK_FILE' exists"
+            ps aux | grep '\./easyrp' | grep -v grep
+        fi
+        ;;
+esac
