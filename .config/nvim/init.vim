@@ -27,6 +27,7 @@ Plug 'kassio/neoterm'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 call glaive#Install() " Required for google plugins
@@ -72,7 +73,7 @@ au FileType c,cpp setlocal ts=2 sw=2 et
 au FileType tex setlocal ts=2 sw=2 tw=120 et
 au FileType tex setlocal ts=2 sw=2 tw=120 et
 au FileType typescript setlocal ts=2 sw=2 et
-au FileType python setlocal tw=120 et
+au FileType python setlocal ts=4 sw=4 tw=120 et
 set expandtab
 set textwidth=80
 set t_Co=256
@@ -179,6 +180,11 @@ endfunction
 nmap ,s :call SwitchSourceHeader()<CR>
 
 tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>r :echo <C-r><C-w><CR>
+function VisualEval()
+  echo eval(@x)
+endfunction
+vnoremap <leader>r "xy:call VisualEval()<CR>
 
 set laststatus=2
 set showtabline=2

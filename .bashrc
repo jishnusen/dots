@@ -12,7 +12,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-oracle/
 
 alias e=$EDITOR
 alias kmux="pkill tmux:\ server"
-alias tmux="tmux attach"
+alias tmux="tmux"
 
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
@@ -284,6 +284,12 @@ ccc() {
 
 ggg() {
   g32 -fsanitize=leak -g $@ && ./a.out && rm a.out
+}
+
+cnr() {
+  # if [ $1 == *.c ]; then
+      gcc $1 && ./a.out ${@:2} && rm a.out
+  # fi
 }
 
 alias x=extract

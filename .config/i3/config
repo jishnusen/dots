@@ -244,6 +244,8 @@ set $darkgray #1d2021
 title_align center
 
 assign [class="zoom"] workspace number 4
+assign [class="spotify"] workspace number 9
 for_window [window_role="About"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="float"] floating enable
+for_window [class="Yad" title="yad-calendar"] floating enable

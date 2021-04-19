@@ -307,12 +307,12 @@ click-right = rofi-pulseaudio
 [module/microphone]
 type = custom/ipc
 
-hook-0 = ~/.config/polybar/microphone.sh
+hook-0 = ~/.config/polybar/mic-volume.sh show-vol 2
 initial = 1
 
-click-left = ponymix -t source toggle ; polybar-msg -p %pid% hook microphone 1
-scroll-up = ponymix -t source increase 5 ; polybar-msg -p %pid% hook microphone 1
-scroll-down = ponymix -t source decrease 5 ; polybar-msg -p %pid% hook microphone 1
+click-left = ~/.config/polybar/mic-volume.sh mute-vol; polybar-msg -p %pid% hook microphone 1
+scroll-up = ~/.config/polybar/mic-volume.sh inc-vol; polybar-msg -p %pid% hook microphone 1
+scroll-down = ~/.config/polybar/mic-volume.sh dec-vol; polybar-msg -p %pid% hook microphone 1
 click-right = rofi-pulseaudio source output
 
 [module/battery]

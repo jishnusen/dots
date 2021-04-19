@@ -1,7 +1,7 @@
 ! Base16 Ashes
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
-*.font: xft:Iosevka Term:style=Regular:size=11
+*.font: Iosevka Term:size=11
 URxvt.scrollBar: false
 
 Xft.antialias: 1
