@@ -273,7 +273,7 @@ exec = ~/.config/polybar/popup-calendar.sh
 interval = 5
 click-left = ~/.config/polybar/popup-calendar.sh --popup &
 
-format-prefix = " "
+format-prefix = 
 
 [module/time]
 type = internal/date
