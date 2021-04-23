@@ -2,8 +2,8 @@
 
 BAR_HEIGHT=32  # polybar height
 BORDER_SIZE=1  # border size from your wm settings
-YAD_WIDTH=224  # 222 is minimum possible value
-YAD_HEIGHT=193 # 193 is minimum possible value
+YAD_WIDTH=244  # 222 is minimum possible value
+YAD_HEIGHT=153 # 193 is minimum possible value
 DATE="$(date +" %a %D")"
 
 case "$1" in

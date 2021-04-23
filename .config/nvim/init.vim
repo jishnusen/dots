@@ -1,8 +1,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
+Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'lilydjwg/colorizer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -23,19 +24,21 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
 Plug 'sirver/ultisnips'
-Plug 'kassio/neoterm'
+" Plug 'kassio/neoterm'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 call glaive#Install() " Required for google plugins
 
 let g:deoplete#enable_at_startup = 1
+" let g:deoplete#num_processes = 1
 let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#show_docstring = 1
-let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_material_transparent_background=1
 " VimTeX Settings
 let g:tex_flavor='latex'
 let g:vimtex_view_general_viewer='zathura'
@@ -62,7 +65,7 @@ set nocompatible
 
 set background=dark
 let g:hybrid_custom_term_colors = 1
-colorscheme gruvbox 
+colorscheme gruvbox-material 
 syntax enable
 
 set autoindent
@@ -71,9 +74,11 @@ set tabstop=4
 set shiftwidth=4
 au FileType c,cpp setlocal ts=2 sw=2 et
 au FileType tex setlocal ts=2 sw=2 tw=120 et
-au FileType tex setlocal ts=2 sw=2 tw=120 et
-au FileType typescript setlocal ts=2 sw=2 et
+au FileType javascript,typescript setlocal ts=2 sw=2 et
 au FileType python setlocal ts=4 sw=4 tw=120 et
+
+let b:ale_linters = {'python': ['pylint']}
+
 set expandtab
 set textwidth=80
 set t_Co=256
@@ -190,7 +195,7 @@ set laststatus=2
 set showtabline=2
 
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
+let g:lightline.colorscheme = 'gruvbox_material'
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
@@ -266,4 +271,11 @@ augroup neovim_terminal
     " allows you to use Ctrl-c on terminal window
     autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
 augroup END
+
+" autocmd VimEnter * call SetupLightlineColors()
+" function SetupLightlineColors() abort
+"   let l:pallete = lightline#palette()
+"   let l:pallete.normal.left[1][3] = 'NONE'
+"   call lightline#colorscheme()
+" endfunction
 

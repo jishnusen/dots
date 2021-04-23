@@ -2,7 +2,7 @@
 
 DEFAULT_SOURCE_INDEX=$(pacmd list-sources | grep "\* index:" | cut -d' ' -f5)
 MUTED_COLOR="$(xgetres color8)"
-ACTIVE_COLOR="$(xgetres color3)"
+ACTIVE_COLOR="$(xgetres color10)"
 
 display_volume() {
 	if [ -z "$volume" ]; then

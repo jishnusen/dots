@@ -49,7 +49,7 @@ font-5 = sans:pixelsize=10;2
 
 modules-left = memory cpu spotify
 modules-center = i3
-modules-right =  battery dunst microphone volume xbacklight packages popup-calendar time
+modules-right =  dunst microphone volume packages popup-calendar date time
 
 tray-position = left
 tray-padding = 0
@@ -261,19 +261,21 @@ format-prefix-foreground = ${colors.foreground}
 ; format-disconnected-underline = #ff7f7f
 ; format-connected-underline = #7fff7f
 
-; [module/date]
-; type = internal/date
-; interval = 60
+[module/date]
+type = internal/date
+interval = 60
 
-; date = " %a %D"
-; date-alt = " %Y-%m-%d"
+; format-prefix = 
+date = "%a %D"
+date-alt = "%Y-%m-%d"
+
 [module/popup-calendar]
 type = custom/script
-exec = ~/.config/polybar/popup-calendar.sh
+exec = echo ""
 interval = 5
 click-left = ~/.config/polybar/popup-calendar.sh --popup &
 
-format-prefix = 
+; format-prefix = 
 
 [module/time]
 type = internal/date
@@ -289,31 +291,28 @@ format-label-foreground = ${colors.urgent}
 
 [module/volume]
 type = internal/pulseaudio
-
 use-ui-max = true
 
 format-volume = %{A3:rofi-pulseaudio:}<ramp-volume> <label-volume>%{A}
 format-muted =  0%
 format-muted-foreground = ${colors.muted}
-format-volume-foreground = ${colors.foreground}
+format-volume-foreground = ${xrdb:color5}
 interval = 1
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-click-right = rofi-pulseaudio
-
 [module/microphone]
 type = custom/ipc
 
-hook-0 = ~/.config/polybar/mic-volume.sh show-vol 2
+hook-0 = ~/.config/polybar/mic-volume.sh show-vol
 initial = 1
 
 click-left = ~/.config/polybar/mic-volume.sh mute-vol; polybar-msg -p %pid% hook microphone 1
 scroll-up = ~/.config/polybar/mic-volume.sh inc-vol; polybar-msg -p %pid% hook microphone 1
 scroll-down = ~/.config/polybar/mic-volume.sh dec-vol; polybar-msg -p %pid% hook microphone 1
-click-right = rofi-pulseaudio source output
+click-right = /usr/bin/python3 ~/bin/scripts/rofi_audio_set_default_source.py
 
 [module/battery]
 type = internal/battery
