@@ -138,6 +138,8 @@ bindsym --whole-window --border $mod+button5 exec transset-df --dec -p 0.1 -m 0.
 bindsym --whole-window --border $mod+shift+button4 gaps inner current minus 5
 bindsym --whole-window --border $mod+shift+button5 gaps inner current plus 5
 
+gaps inner 5
+
 default_border pixel 2
 smart_borders on
 
@@ -218,7 +220,7 @@ set_from_resource $color15 color15
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $color5 $color13 $color0 $color13 $color10
-client.focused_inactive $color7  $color2 $color5  $color4  $color7
+client.focused_inactive $color5  $color5 $color0  $color4  $color7
 client.unfocused        $color0  $color0 $color5  $color0  $color0
 client.urgent           $color8  $color8 $color0  $color8  $color8
 client.placeholder      $color0  $color0 $color5  $color0  $color0
@@ -250,3 +252,6 @@ for_window [window_role="pop-up"] floating enable
 for_window [class="float"] floating enable
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
+for_window [title="Settings"] floating enable
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom Meeting"] floating disable 

@@ -30,6 +30,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
+Plug 'vimsence/vimsence'
 call plug#end()
 
 call glaive#Install() " Required for google plugins
@@ -187,7 +188,9 @@ nmap ,s :call SwitchSourceHeader()<CR>
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>r :echo <C-r><C-w><CR>
 function VisualEval()
+  " echo eval(@x)
   echo eval(@x)
+  let @x = eval(@x)
 endfunction
 vnoremap <leader>r "xy:call VisualEval()<CR>
 

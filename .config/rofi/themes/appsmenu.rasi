@@ -4,7 +4,7 @@
 @import "shared/settings.rasi"
 * {
   background-color: transparent;
-  text-color: @foreground-list;
+  text-color: @accent;
   font: @text-font;
 }
 
@@ -17,6 +17,7 @@ prompt,
 textbox-prompt-colon,
 entry {
   background-color: @background-light;
+  text-color: @accent;
 }
 
 #inputbar {
@@ -27,7 +28,7 @@ entry {
 #prompt {
   padding: @prompt-padding-icon;
   background-color: @accent;
-  text-color: @background;
+  text-color: @accent;
   font: @icon-font-small;
 }
 
