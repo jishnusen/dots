@@ -171,9 +171,9 @@ bindcode 148 exec --no-startup-id pactl set-sink-volume 1 -5%
 bindcode 163 exec --no-startup-id pactl set-sink-mute 1 toggle
 
 # Media player controls
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPause exec music.sh play-pause
+bindsym XF86AudioNext exec music.sh next
+bindsym XF86AudioPrev exec music.sh previous
 
 # bindsym F6 exec playerctl play-pause
 
@@ -253,5 +253,4 @@ for_window [class="float"] floating enable
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
 for_window [title="Settings"] floating enable
-for_window [class="zoom"] floating enable
 for_window [class="zoom" title="Zoom Meeting"] floating disable 

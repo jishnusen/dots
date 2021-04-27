@@ -9,28 +9,28 @@ Plug 'lilydjwg/colorizer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'neovimhaskell/haskell-vim'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+" Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'google/vim-searchindex'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'zchee/deoplete-clang'
-Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
+Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python' }
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'for': 'tex' }
 Plug 'sirver/ultisnips'
 " Plug 'kassio/neoterm'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
-Plug 'vimsence/vimsence'
+" Plug 'vimsence/vimsence'
 call plug#end()
 
 call glaive#Install() " Required for google plugins
@@ -122,6 +122,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 vnoremap <tab> %
+nnoremap <C-S-p> :CtrlPMixed<CR>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -165,7 +166,7 @@ nmap <Leader>8 <Plug>lightline#bufferline#go(8)
 nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
-nnoremap <Leader>t :NERDTreeToggle<CR>
+" nnoremap <Leader>t :NERDTreeToggle<CR>
 
 nnoremap <leader>/ :FZF<CR>
 
@@ -229,18 +230,18 @@ hi clear SignColumn
 set nocursorline
 
 " set guicursor=
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "+",
-    \ "Staged"    : "*",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "x",
-    \ "Dirty"     : "x",
-    \ "Clean"     : "✔",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"     \ "Modified"  : "+",
+"     \ "Staged"    : "*",
+"     \ "Untracked" : "?",
+"     \ "Renamed"   : "➜",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "x",
+"     \ "Dirty"     : "x",
+"     \ "Clean"     : "✔",
+"     \ 'Ignored'   : '☒',
+"     \ "Unknown"   : "?"
+"     \ }
 autocmd StdinReadPre * let s:std_in=1
 
 set completeopt-=preview
@@ -248,6 +249,7 @@ set completeopt-=preview
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
+" let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',

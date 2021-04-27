@@ -46,6 +46,7 @@ WINDOW_ICONS = {
     'banshee': fa.icons['play'],
     'blender': fa.icons['cube'],
     'chromium': fa.icons['chrome'],
+    'clementine': fa.icons['music'],
     'code': fa.icons['code'],
     'cura': fa.icons['cube'],
     'code-oss': fa.icons['code'],

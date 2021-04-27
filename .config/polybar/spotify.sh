@@ -1,15 +1,24 @@
 #!/bin/bash
 
 main() {
-  if ! pgrep -x spotify >/dev/null; then
-    echo ""; exit
-  fi
+  # if ! pgrep -x spotify >/dev/null; then
+  #   echo ""; exit
+  # fi
 
-  artist=$(playerctl metadata artist)
-  title=$(playerctl metadata title)
-  status=$(playerctl status -a | rg Playing)
-  shuffle=$(playerctl shuffle)
-  loop=$(playerctl loop)
+  number=$(playerctl status -a | rg Play -n | cut -f 1 -d : | sed -n '1 p')
+  if [ -z $number ]; then
+      number=$(playerctl status -a | rg Pause -n | cut -f 1 -d : | sed -n '1 p')
+      if [[ -z $number ]]; then
+          echo
+          exit 0
+      fi
+  fi
+  player=$(playerctl -l | sed -n $number' p')
+  artist=$(playerctl metadata artist -p $player | cut -f 1 -d ";")
+  title=$(playerctl metadata title -p $player)
+  status=$(playerctl status -p $player | rg Playing)
+  # shuffle=$(playerctl shuffle)
+  # loop=$(playerctl loop)
 
   BUTTON_COLOR="$(xgetres color5)"
   ICON_COLOR="$(xgetres color13)"
@@ -30,12 +39,12 @@ main() {
   #   ll="%{A1:spotify-refresh $$ playerctl loop Playlist:}%{F${BUTTON_COLOR}}%{F-}%{A}"
   # fi
 
-  echo -n "%{A1:i3-msg workspace number 9:}%{F${ICON_COLOR}}%{F-}%{A} "
+  echo -n "%{A1:wmctrl -a \`playerctl metadata artist\`:}%{F${ICON_COLOR}}%{F-}%{A} "
   echo -n "$artist %{F${BUTTON_COLOR}}-%{F-} "
   echo -n "%{F${ARTIST_COLOR}}$title%{F-}"
-  echo -n " %{A1:spotify-refresh $$ playerctl previous:}%{A} "
-  echo -n "%{A1:spotify-refresh $$ playerctl play-pause:} $pp %{A} "
-  echo -n "%{A1:spotify-refresh $$ playerctl next:}%{A} "
+  echo -n " %{A1:spotify-refresh $$ playerctl previous -p $player:}%{A} "
+  echo -n "%{A1:spotify-refresh $$ playerctl play-pause -p $player:} $pp %{A} "
+  echo -n "%{A1:spotify-refresh $$ playerctl next -p $player:}%{A} "
   # echo -n " "
   # echo -n "$ss "
   # echo -n "$ll"
