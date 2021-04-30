@@ -5,6 +5,12 @@ main() {
   #   echo ""; exit
   # fi
 
+  playerctl status -a &> /dev/null
+  if ! [ "$?" -eq "0" ]; then
+    echo
+    exit 0
+  fi
+
   number=$(playerctl status -a | rg Play -n | cut -f 1 -d : | sed -n '1 p')
   if [ -z $number ]; then
       number=$(playerctl status -a | rg Pause -n | cut -f 1 -d : | sed -n '1 p')
@@ -28,6 +34,7 @@ main() {
   if [ "${status}" = "Playing" ]; then
     pp="%{F${BUTTON_COLOR}}%{F-}"
   fi
+
 
   # ss="%{A1:spotify-refresh $$ playerctl shuffle Off:}%{A}"
   # if [ "${shuffle}" = "Off" ]; then

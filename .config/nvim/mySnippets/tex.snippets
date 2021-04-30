@@ -1,13 +1,13 @@
 global !p
 def text():
-  [x,y] = vim.eval('vimtex#env#is_inside("'+ 'lstlisting' + '")') 
+  [x,y] = vim.eval('vimtex#env#is_inside("'+ 'lstlisting' + '")')
   return vim.eval('vimtex#syntax#in_mathzone()') != '1' and (x == '0' or y == '0')
 def math():
 	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-def comment(): 
+def comment():
 	return vim.eval('vimtex#syntax#in_comment()') == '1'
 def align():
-  [x,y] = vim.eval('vimtex#env#is_inside("'+ 'align' + '")') 
+  [x,y] = vim.eval('vimtex#env#is_inside("'+ 'align' + '")')
   return x != '0' and y != '0'
 #def env(name):
 #  [x,y] = vim.eval('vimtex#env#is_inside("' + str(name) + '")')
@@ -76,12 +76,12 @@ endsnippet
 # Math modifiers
 #
 context "math()"
-snippet __ "subscript" iA 
+snippet __ "subscript" iA
 _{$1}$0
 endsnippet
 
 context "math()"
-snippet ^^ "superscript" iA 
+snippet ^^ "superscript" iA
 ^{$1}$0
 endsnippet
 
@@ -184,7 +184,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "(?<!\\)(Aboxed|abs|bar|(?<![A])boxed|ceil|floor|hat|norm|paren|set|sqrt|tup|vec)" "general math snippets" wrA
+snippet "(?<!\\)(Aboxed|abs|bar|(?<![A])boxed|ceil|floor|hat|norm|paren|set|sqrt|tup|vec|vv)" "general math snippets" wrA
 \\`!p snip.rv = match.group(1)`{$1}$0
 endsnippet
 
@@ -206,12 +206,12 @@ endsnippet
 
 context "math()"
 snippet xx "times" iA
-\times 
+\times
 endsnippet
 
 context "math()"
 snippet ** "cdot" iA
-\cdot 
+\cdot
 endsnippet
 
 context "math()"

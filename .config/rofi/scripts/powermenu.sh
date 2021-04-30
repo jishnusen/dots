@@ -21,12 +21,12 @@ case $chosen in
         ;;
     $lock)
         playerctl pause
-        lock-session
+        slock
         ;;
     $suspend)
         playerctl pause
         amixer set Master mute
-        lock-session
+        slock
         systemctl suspend
         ;;
     $log_out)

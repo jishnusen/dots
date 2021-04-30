@@ -1,11 +1,11 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
-Plug 'shinchu/lightline-gruvbox.vim'
+" Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'sainnhe/gruvbox-material'
 Plug 'arcticicestudio/nord-vim'
-Plug 'lilydjwg/colorizer'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
@@ -45,11 +45,7 @@ let g:tex_flavor='latex'
 let g:vimtex_view_general_viewer='zathura'
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
-    \    '--shell-escape',
-    \    '-verbose',
-    \    '-file-line-error',
     \    '-synctex=1',
-    \    '-interaction=nonstopmode',
     \ ],
     \}
 " UltiSnips Settings
@@ -63,10 +59,11 @@ set fenc=utf-8
 set termencoding=utf-8
 
 set nocompatible
+set termguicolors
 
 set background=dark
 let g:hybrid_custom_term_colors = 1
-colorscheme gruvbox-material 
+colorscheme gruvbox-material
 syntax enable
 
 set autoindent
@@ -168,7 +165,7 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " nnoremap <Leader>t :NERDTreeToggle<CR>
 
-nnoremap <leader>/ :FZF<CR>
+nnoremap <leader>/ :Files<CR>
 
 function! SwitchSourceHeader()
   "update!
@@ -180,13 +177,12 @@ function! SwitchSourceHeader()
     elseif filereadable(expand("%:r") . ".cc")
         find %:t:r.cc
     endif
- 
   endif
 endfunction
 
 nmap ,s :call SwitchSourceHeader()<CR>
 
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-c>
 nnoremap <leader>r :echo <C-r><C-w><CR>
 function VisualEval()
   " echo eval(@x)
@@ -203,6 +199,10 @@ let g:lightline.colorscheme = 'gruvbox_material'
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [[]]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.component_function = {'filename': 'LightlineFilename'}
+function! LightlineFilename()
+  return expand('%')
+endfunction
 
 let g:goyo_height = "90%"
 let g:goyo_width = "30%"
@@ -252,7 +252,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$\|\v[\/]node_modules$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -283,4 +283,9 @@ augroup END
 "   let l:pallete.normal.left[1][3] = 'NONE'
 "   call lightline#colorscheme()
 " endfunction
-
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhitespace()
