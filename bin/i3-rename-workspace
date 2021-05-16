@@ -106,7 +106,7 @@ WINDOW_ICONS = {
     'yelp': fa.icons['code'],
     'zenity': fa.icons['window-maximize'],
     'zoom': fa.icons['video'],
-    'zathura': fa.icons['file-alt'],
+    'zathura': fa.icons['file-pdf'],
 }
 
 # This icon is used for any application not in the list above

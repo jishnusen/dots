@@ -2,12 +2,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
 " Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'sainnhe/gruvbox-material'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 " Plug 'scrooloose/nerdtree'
@@ -22,14 +22,14 @@ Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python' }
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'lervag/vimtex', {'for': 'tex' }
-Plug 'sirver/ultisnips'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'sirver/ultisnips', { 'for': 'tex' }
 " Plug 'kassio/neoterm'
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'dense-analysis/ale'
 " Plug 'vimsence/vimsence'
 call plug#end()
 
@@ -42,7 +42,9 @@ let g:deoplete#sources#jedi#show_docstring = 1
 " let g:gruvbox_material_transparent_background=1
 " VimTeX Settings
 let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_view_general_viewer='mupdf'
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_compiler_engine = 'lualatex'
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
     \    '-synctex=1',
@@ -98,6 +100,7 @@ set showmatch
 set hlsearch
 set hidden
 
+tnoremap <Esc> <C-\><C-n>
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -182,7 +185,6 @@ endfunction
 
 nmap ,s :call SwitchSourceHeader()<CR>
 
-tnoremap <Esc> <C-c>
 nnoremap <leader>r :echo <C-r><C-w><CR>
 function VisualEval()
   " echo eval(@x)

@@ -19,17 +19,18 @@ main() {
   killall -q polybar picom feh dunst xautolock xcompmgr nm-applet blueman-applet
   feh --no-xinerama --bg-scale $HOME/.wallpapers/gruvbox.png &
 
-  # picom --experimental-backends --backend glx &
+  picom --experimental-backends --backend glx -b
   polybar -r top &
 
   dunst &
   nm-applet &
   blueman-applet &
+  discordrp-mpris &
 
   # dropbox-run start
   # xbanish &
 
-  xcompmgr -c -l0 -t0 -r0 -o.00 &
+  # xcompmgr -c -l0 -t0 -r0 -o.00 &
 
   sleep 1
 

@@ -3,7 +3,7 @@
 # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 export PULSE_SERVER=tcp:$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}')
 export DISTRO_DNS=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}')
-export LIBGL_ALWAYS_INDIRECT=1
+export LIBGL_ALWAYS_INDIRECT=0
 export GOPATH=$HOME/go
 export PATH=$HOME/ghidra_9.2.3_PUBLIC:$HOME/.bazel/bin:$PATH:$HOME/bin:$GOPATH/bin:$HOME/.cargo/bin:/opt/android-studio/bin:/usr/roborio/bin:$HOME/.nvim/bin:$HOME/.bazel/bin/:$HOME/.local/bin
 export EDITOR=nvim
@@ -19,89 +19,89 @@ YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 NO_COLOUR="\[\033[0m\]"
 
-function _git_prompt() {
-  local git_status="git --git-dir=$(echo -n \$PWD)/.git status -unormal 2>&1"
-  echo $git_status
-  local test=$(eval $git_status)
-  echo $test
-  
-  # Checks to see if we're in a git repo
-  if ! [[ "$git_status" =~ not\ a\ git\ repo ]]; then
-    # if we're in a repo thats clean, then color it green
-    if [[ "$git_status" =~ nothing\ to\ commit ]]; then
-      local ansi=$GREEN
-      # if the repos dirty, color it red
-      elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-      local ansi=$RED
-    else
-     #Just to be sure, color it red
-     local ansi=$RED
-    fi
-    
-    # Get git branch name
-    # checks the output of git status for "On branch " then uses that to set the branch
-    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-      branch=${BASH_REMATCH[1]}
-      #test "$branch" != master || branch=' '
-    else
-      # Detached HEAD.  (branch=HEAD is a faster alternative.)
-      branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
-      echo HEAD`)"
-    fi
-    # prints out " | $branch_name"
-    echo -n '| '"$ansi"''"$branch"'\[\e[0m\] [$(_git_changes)]'
-  fi
-}
+#function _git_prompt() {
+#  local git_status="git --git-dir=$(echo -n \$PWD)/.git status -unormal 2>&1"
+#  echo $git_status
+#  local test=$(eval $git_status)
+#  echo $test
 
-function _git_changes {
-  [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
-  
-  local added_symbol="*"
-  local unmerged_symbol="✗"
-  local modified_symbol="+"
-  local clean_symbol="✔"
-  local has_untracked_files_symbol="?"
-  
-  local ahead_symbol="↑"
-  local behind_symbol="↓"
-  
-  local unmerged_count=0 modified_count=0 has_untracked_files=0 added_count=0 is_clean=""
-  
-  set -- $(git rev-list --left-right --count @{upstream}...HEAD 2>/dev/null)
-  local behind_count=$1
-  local ahead_count=$2
-  
-  # Added (A), Copied (C), Deleted (D), Modified (M), Renamed (R), changed (T), Unmerged (U), Unknown (X), Broken (B)
-  while read line; do
-    case "$line" in
-      M*) modified_count=$(( $modified_count + 1 )) ;;
-      U*) unmerged_count=$(( $unmerged_count + 1 )) ;;
-    esac
-  done < <(git diff --name-status)
-  
-  while read line; do
-    case "$line" in
-      *) added_count=$(( $added_count + 1 )) ;;
-    esac
-  done < <(git diff --name-status --cached)
-  
-  if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-    has_untracked_files=1
-  fi
-  
-  if [ $(( unmerged_count + modified_count + has_untracked_files + added_count )) -eq 0 ]; then
-    is_clean=1
-  fi
-  
-  local leading_whitespace=""
-  [[ $ahead_count -gt 0 ]]         && { printf "%s" "$leading_whitespace$ahead_symbol$ahead_count"; leading_whitespace=" "; }
-  [[ $behind_count -gt 0 ]]        && { printf "%s" "$leading_whitespace$behind_symbol$behind_count"; leading_whitespace=" "; }
-  [[ $modified_count -gt 0 ]]      && { printf "%s" "$leading_whitespace$modified_symbol$modified_count"; leading_whitespace=" "; }
-  [[ $unmerged_count -gt 0 ]]      && { printf "%s" "$leading_whitespace$unmerged_symbol$unmerged_count"; leading_whitespace=" "; }
-  [[ $added_count -gt 0 ]]         && { printf "%s" "$leading_whitespace$added_symbol$added_count"; leading_whitespace=" "; }
-  [[ $has_untracked_files -gt 0 ]] && { printf "%s" "$leading_whitespace$has_untracked_files_symbol"; leading_whitespace=" "; }
-  [[ $is_clean -gt 0 ]]            && { printf "%s" "$leading_whitespace$clean_symbol"; leading_whitespace=" "; }
-}
+#  # Checks to see if we're in a git repo
+#  if ! [[ "$git_status" =~ not\ a\ git\ repo ]]; then
+#    # if we're in a repo thats clean, then color it green
+#    if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+#      local ansi=$GREEN
+#      # if the repos dirty, color it red
+#      elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+#      local ansi=$RED
+#    else
+#     #Just to be sure, color it red
+#     local ansi=$RED
+#    fi
+
+#    # Get git branch name
+#    # checks the output of git status for "On branch " then uses that to set the branch
+#    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+#      branch=${BASH_REMATCH[1]}
+#      #test "$branch" != master || branch=' '
+#    else
+#      # Detached HEAD.  (branch=HEAD is a faster alternative.)
+#      branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
+#      echo HEAD`)"
+#    fi
+#    # prints out " | $branch_name"
+#    echo -n '| '"$ansi"''"$branch"'\[\e[0m\] [$(_git_changes)]'
+#  fi
+#}
+
+# function _git_changes {
+#   [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 1
+
+#   local added_symbol="*"
+#   local unmerged_symbol="✗"
+#   local modified_symbol="+"
+#   local clean_symbol="✔"
+#   local has_untracked_files_symbol="?"
+
+#   local ahead_symbol="↑"
+#   local behind_symbol="↓"
+
+#   local unmerged_count=0 modified_count=0 has_untracked_files=0 added_count=0 is_clean=""
+
+#   set -- $(git rev-list --left-right --count @{upstream}...HEAD 2>/dev/null)
+#   local behind_count=$1
+#   local ahead_count=$2
+
+#   # Added (A), Copied (C), Deleted (D), Modified (M), Renamed (R), changed (T), Unmerged (U), Unknown (X), Broken (B)
+#   while read line; do
+#     case "$line" in
+#       M*) modified_count=$(( $modified_count + 1 )) ;;
+#       U*) unmerged_count=$(( $unmerged_count + 1 )) ;;
+#     esac
+#   done < <(git diff --name-status)
+
+#   while read line; do
+#     case "$line" in
+#       *) added_count=$(( $added_count + 1 )) ;;
+#     esac
+#   done < <(git diff --name-status --cached)
+
+#   if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+#     has_untracked_files=1
+#   fi
+
+#   if [ $(( unmerged_count + modified_count + has_untracked_files + added_count )) -eq 0 ]; then
+#     is_clean=1
+#   fi
+
+#   local leading_whitespace=""
+#   [[ $ahead_count -gt 0 ]]         && { printf "%s" "$leading_whitespace$ahead_symbol$ahead_count"; leading_whitespace=" "; }
+#   [[ $behind_count -gt 0 ]]        && { printf "%s" "$leading_whitespace$behind_symbol$behind_count"; leading_whitespace=" "; }
+#   [[ $modified_count -gt 0 ]]      && { printf "%s" "$leading_whitespace$modified_symbol$modified_count"; leading_whitespace=" "; }
+#   [[ $unmerged_count -gt 0 ]]      && { printf "%s" "$leading_whitespace$unmerged_symbol$unmerged_count"; leading_whitespace=" "; }
+#   [[ $added_count -gt 0 ]]         && { printf "%s" "$leading_whitespace$added_symbol$added_count"; leading_whitespace=" "; }
+#   [[ $has_untracked_files -gt 0 ]] && { printf "%s" "$leading_whitespace$has_untracked_files_symbol"; leading_whitespace=" "; }
+#   [[ $is_clean -gt 0 ]]            && { printf "%s" "$leading_whitespace$clean_symbol"; leading_whitespace=" "; }
+# }
 
 # Bash History Replacement Script
 #    Author: Caesar Kabalan
@@ -167,11 +167,11 @@ function _git_changes {
 # 	PS1="${PS1}]\n${COLOR_DIVIDER}[${COLOR_USERNAME}\u${COLOR_USERHOSTAT}@${COLOR_HOSTNAME}\h${COLOR_DIVIDER}]${COLOR_NONE} "
 # }
 
-# # Tell Bash to run the above function for every prompt
+# Tell Bash to run the above function for every prompt
 # export PROMPT_COMMAND=set_bash_prompt
 # export PROMPT_COMMAND='export PS1="${_PS1}\n$ ($SHLVL) "'
 # if [ $SHLVL -eq 1 ]
-# then 
+# then
 #     export PROMPT_COMMAND='export PS1="${_PS1}\n$ "'
 # fi
 
@@ -202,7 +202,7 @@ function compress() {
   dirPriorToExe=`pwd`
   dirName=`dirname $1`
   baseName=`basename $1`
-  
+
   if [ -f $1 ] ; then
     echo "It was a file change directory to $dirName"
     cd $dirName
@@ -301,8 +301,6 @@ alias mongofrk='mongod --fork --logpath /var/log/mongodb/mongod.log'
 export HISTCONTROL=ignoredups
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
-. ~/.local/share/nvim/plugged/gruvbox/gruvbox_256palette.sh
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval "$(thefuck --alias)"
@@ -317,17 +315,17 @@ export PATH="$SPICETIFY_INSTALL:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jishnu/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jishnu/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jishnu/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jishnu/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/jishnu/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/jishnu/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/jishnu/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/jishnu/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # source ~/.local/share/blesh/ble.sh

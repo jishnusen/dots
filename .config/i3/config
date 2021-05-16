@@ -233,7 +233,7 @@ set $blue #458588
 set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
-set $darkgray #1d2021 
+set $darkgray #1d2021
 
 
 # green gruvbox
@@ -253,4 +253,4 @@ for_window [class="float"] floating enable
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
 for_window [title="Settings"] floating enable
-for_window [class="zoom" title="Zoom Meeting"] floating disable 
+for_window [class="zoom" title="Zoom Meeting"] floating disable
