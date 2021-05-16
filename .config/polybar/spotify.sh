@@ -21,7 +21,7 @@ main() {
   fi
   player=$(playerctl -l | sed -n $number' p')
   artist=$(playerctl metadata artist -p $player | cut -f 1 -d ";")
-  title=$(playerctl metadata title -p $player)
+  title="`playerctl metadata title -p $player | cut -c -30``playerctl metadata title -p $player| awk 'length>20{print "..."; exit}1' | xargs`"
   status=$(playerctl status -p $player | rg Playing)
   # shuffle=$(playerctl shuffle)
   # loop=$(playerctl loop)
