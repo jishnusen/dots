@@ -10,6 +10,7 @@ shell:
 font:
   normal:
     family: Iosevka
+    style: Regular
   size: 11.0
 
 key_bindings:
