@@ -13,9 +13,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { "folke/tokyonight.nvim", lazy = false },
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}
+  { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+  { "neovim/nvim-lspconfig" },
 })
 require("bufferline").setup{}
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup {}
+lspconfig.tsserver.setup {}
+lspconfig.clangd.setup {
+  single_file_support = true,
+}
 
 -- appearance
 vim.cmd.colorscheme("tokyonight-night")
