@@ -2,9 +2,15 @@ import:
   - ~/.config/alacritty/alacritty-theme/themes/tokyo-night.yaml
 
 shell:
-  program: "/usr/bin/fish"
+  program: /usr/local/bin/fish
+  args:
+    - -l
+    - -i
 
 font:
   normal:
     family: Iosevka
   size: 11.0
+
+key_bindings:
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
