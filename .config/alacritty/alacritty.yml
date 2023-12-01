@@ -5,7 +5,7 @@ shell:
   program: /bin/bash
   args:
     - -c
-    - "SHELL=/usr/local/bin/fish /usr/local/bin/fish -l -i"
+    - "SHELL=/usr/local/bin/fish exec /usr/local/bin/fish -l -i"
 
 font:
   normal:
