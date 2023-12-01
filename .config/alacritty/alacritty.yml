@@ -2,10 +2,10 @@ import:
   - ~/.config/alacritty/alacritty-theme/themes/tokyo-night.yaml
 
 shell:
-  program: /usr/local/bin/fish
+  program: /bin/bash
   args:
-    - -l
-    - -i
+    - -c
+    - "SHELL=/usr/local/bin/fish /usr/local/bin/fish -l -i"
 
 font:
   normal:
