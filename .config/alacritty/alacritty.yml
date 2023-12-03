@@ -2,7 +2,7 @@ import:
   - ~/.config/alacritty/alacritty-theme/themes/tokyo-night.yaml
 
 shell:
-  program: /bin/bash
+  program: /bin/sh
   args:
     - -c
     - "SHELL=/usr/local/bin/fish exec /usr/local/bin/fish -l -i"
