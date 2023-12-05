@@ -12,9 +12,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ","
-require("lazy").setup({
-  { import = "plugins" },
-})
+require("lazy").setup(
+  {
+    { import = "plugins" },
+  },
+  {
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "gzip",
+          "matchit",
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
+        },
+      },
+    },
+  }
+)
 
 -- appearance
 vim.wo.number = true

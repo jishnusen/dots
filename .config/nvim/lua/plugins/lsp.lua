@@ -9,18 +9,15 @@ return {
     require("neodev").setup({});
     local lspconfig = require('lspconfig');
     lspconfig.pyright.setup({});
-    lspconfig.tsserver.setup({});
     lspconfig.texlab.setup({
       settings = {
         texlab = {
           build = {
-            onSave = true,
+            onSave = false,
             executable = "latexmk",
             args = {
               "-xelatex",
-              "-synctex=1",
               "-interaction=nonstopmode",
-              "-file-line-error",
               "--shell-escape",
               "%f"
             }
