@@ -16,11 +16,15 @@ return {
             onSave = false,
             executable = "latexmk",
             args = {
+              "-pdf",
               "-xelatex",
               "-interaction=nonstopmode",
               "--shell-escape",
               "%f"
             }
+          },
+          chktex = {
+            onOpenAndSave = true,
           }
         }
       }
@@ -36,6 +40,10 @@ return {
           }
         }
       }
+    });
+
+    vim.diagnostic.config({
+      update_in_insert = true,
     });
   end
 }
