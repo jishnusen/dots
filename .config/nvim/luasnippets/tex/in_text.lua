@@ -8,8 +8,22 @@ local in_mathzone = function()
     return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 
+local contains = function(table, val)
+  for _, v in pairs(table) do
+    if string.find(v, val) then
+      return true
+    end
+    return false
+  end
+end
+
+local in_listing = function()
+    local stack = vim.fn["vimtex#syntax#stack"]()
+    return contains(stack, "texMintedZone") or contains(stack, "texLstZone")
+end
+
 local in_text = function()
-    return not in_mathzone() and not in_comment()
+    return not in_mathzone() and not in_comment() and not in_listing()
 end
 
 return {

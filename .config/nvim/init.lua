@@ -48,6 +48,18 @@ noremap("n", "H", "^")
 noremap("n", "<Leader><Leader>", ":bn<CR>")
 noremap("n", "<Leader>.", ":bp<CR>")
 noremap("n", "<Leader>w", ":bd<CR>")
+-- Copy to clipboard
+noremap("v", "<leader>y", "\"+y")
+noremap("n", "<leader>Y", "\"+yg_")
+noremap("n", "<leader>y", "\"+y")
+noremap("n", "<leader>yy", "\"+yy")
+-- Paste from clipboard
+noremap("n", "<leader>p", "\"+p")
+noremap("n", "<leader>P", "\"+P")
+noremap("v", "<leader>p", "\"+p")
+noremap("v", "<leader>P", "\"+P")
+
+noremap("n", ";", ":")
 
 -- indent behavior
 vim.opt.expandtab = true
