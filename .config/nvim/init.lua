@@ -17,6 +17,9 @@ require("lazy").setup(
     { import = "plugins" },
   },
   {
+    dev = {
+      path = "~/Documents/nvim",
+    },
     performance = {
       rtp = {
         disabled_plugins = {

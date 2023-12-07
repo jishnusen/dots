@@ -4,8 +4,8 @@ return {
   lazy = false,
   opts = {
     styles = {
-      comments = { italic = false },
-      keywords = { italic = false },
+--    comments = { italic = false },
+--    keywords = { italic = false },
     },
   },
   config = function(_, opts)
