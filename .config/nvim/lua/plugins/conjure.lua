@@ -1,7 +1,7 @@
 return {
   "Olical/conjure",
   tag = 'v4.48.0',
-  ft = { "clojure", "fennel", "python" }, -- etc
+  ft = { "clojure", "fennel", "python", "lua" }, -- etc
   -- [Optional] cmp-conjure for cmp
   dependencies = {
     {
@@ -26,7 +26,7 @@ return {
     require("conjure.mapping")["on-filetype"]()
   end,
   init = function()
-	     -- Set configuration options here
     vim.g["conjure#debug"] = false
+    vim.g['conjure#extract#tree_sitter#enabled'] = true
   end,
 }
