@@ -4,7 +4,7 @@ return {
   lazy = false,
   opts = {
     styles = {
-      comments = { italic = true },
+      comments = { italic = false },
       keywords = { italic = false },
     },
   },

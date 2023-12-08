@@ -1,8 +1,7 @@
 return {
   "Olical/conjure",
   tag = 'v4.48.0',
-  ft = { "clojure", "fennel", "python" }, -- etc
-  enabled = false,
+  ft = { "clojure", "lisp" }, -- etc
   -- [Optional] cmp-conjure for cmp
   dependencies = {
     {
