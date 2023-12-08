@@ -10,6 +10,7 @@ return {
         require("kitty-runner.kitty-runner").run_command("ipython")
       end
     )
+    vim.keymap.set("n", "<C-c><C-c>", "vip:KittySendLines<CR>")
     vim.api.nvim_create_autocmd({ "ExitPre" }, {
       pattern = { "*" },
       command = [[KittyKillRunnerSync]],
