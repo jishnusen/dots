@@ -4,6 +4,8 @@ return {
     "folke/neodev.nvim",
     "folke/trouble.nvim",
     "nvim-tree/nvim-web-devicons", -- trouble.nvim
+    "onsails/lspkind.nvim",
+    "ray-x/lsp_signature.nvim",
   },
   config = function()
     require("neodev").setup({});
@@ -41,6 +43,9 @@ return {
         }
       }
     });
+
+    require("lsp_signature").setup({})
+    require("lspkind").init({})
 
     vim.diagnostic.config({
       update_in_insert = true,

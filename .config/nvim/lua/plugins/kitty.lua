@@ -12,7 +12,7 @@ return {
     )
     vim.api.nvim_create_autocmd({ "ExitPre" }, {
       pattern = { "*" },
-      command = [[KittyKillRunner]],
+      command = [[KittyKillRunnerSync]],
     })
   end
 }
