@@ -5,9 +5,16 @@ return {
     require("kitty-runner").setup({
       type = "window"
     })
-    vim.keymap.set("n", "<leader>ti",
+    local repls = {
+      python = "ipython",
+      lisp = "rlwrap ros run",
+    }
+    vim.keymap.set("n", "<C-c><C-r>",
       function()
-        require("kitty-runner.kitty-runner").run_command("ipython")
+        local repl = repls[vim.bo.filetype]
+        if repl ~= nil then
+          require("kitty-runner.kitty-runner").run_command(repl)
+        end
       end
     )
     vim.keymap.set("n", "<C-c><C-c>", "vip:KittySendLines<CR>")
