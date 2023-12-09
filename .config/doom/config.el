@@ -32,7 +32,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-tokyo-night
+      doom-font (font-spec :family "Iosevka" :size 14))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -75,3 +76,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (setq sly-command-switch-to-existing-lisp 1)
+
+(setq select-enable-clipboard nil)
+
+(map! "S-C-c" #'clipboard-kill-ring-save)
+(map! "S-C-v" #'clipboard-yank)
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
