@@ -83,3 +83,6 @@
 (map! "S-C-v" #'clipboard-yank)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(setq shell-file-name (executable-find "bash"))
+(setq +latex-viewers '(pdf-tools))
+

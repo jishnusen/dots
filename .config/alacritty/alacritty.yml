@@ -9,9 +9,8 @@ font:
     family: Iosevka Nerd Font Mono
     style: Regular
   bold:
-    family: Iosevka
-  italic:
-    family: Iosevka Oblique
+    family: Iosevka Term
+    style: Bold
   size: 11.0
 
 key_bindings:
