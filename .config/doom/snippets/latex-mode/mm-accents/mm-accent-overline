@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: overline
+# key: oln
+# group: Math Accents
+# condition: (texmathp)
+# --
+\overline{$0}

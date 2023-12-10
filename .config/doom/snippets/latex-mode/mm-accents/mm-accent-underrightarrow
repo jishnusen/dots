@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: underrightarrow
+# key: urarr
+# group: Math Accents
+# condition: (texmathp)
+# --
+\underrightarrow{$0}

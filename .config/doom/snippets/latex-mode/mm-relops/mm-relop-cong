@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cong
+# key: ~=
+# group: Math Relations
+# condition: (texmathp)
+# --
+\cong $0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Theta
+# key: .Q
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\Theta$0

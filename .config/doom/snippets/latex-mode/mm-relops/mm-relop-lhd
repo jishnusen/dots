@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: lhd
+# key: lhd
+# group: Math Relations
+# condition: (texmathp)
+# --
+\lhd $0

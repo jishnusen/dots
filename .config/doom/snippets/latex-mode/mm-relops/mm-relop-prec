@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: prec
+# key: -<
+# group: Math Relations
+# condition: (texmathp)
+# --
+\prec $0

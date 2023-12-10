@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pi
+# key: .p
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\pi$0

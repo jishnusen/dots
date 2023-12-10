@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mathrm
+# key: &rm
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\mathrm{$0}

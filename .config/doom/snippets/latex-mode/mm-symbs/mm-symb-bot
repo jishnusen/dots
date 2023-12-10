@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bot
+# key: bot
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\bot$0

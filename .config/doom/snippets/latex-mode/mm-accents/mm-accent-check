@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: check
+# key: 'v
+# group: Math Accents
+# condition: (texmathp)
+# --
+\check{$0}

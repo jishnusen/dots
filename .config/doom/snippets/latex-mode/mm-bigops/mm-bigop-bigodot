@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bigodot
+# key: O.
+# group: Math Big Operators
+# condition: (texmathp)
+# --
+\bigodot_{$1}$0

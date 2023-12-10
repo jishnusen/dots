@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: setminus
+# key: sdif
+# group: Math Relations
+# condition: (texmathp)
+# --
+\setminus $0

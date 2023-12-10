@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: textstyle
+# key: &ts
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\textstyle $0

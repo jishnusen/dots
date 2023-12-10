@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: nabla alt
+# key: del
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\nabla $0

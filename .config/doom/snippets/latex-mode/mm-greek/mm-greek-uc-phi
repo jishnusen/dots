@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Phi
+# key: .F
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\Phi$0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: iota
+# key: .i
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\iota$0

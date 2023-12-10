@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Downarrow
+# key: Darr
+# group: Math Arrows
+# condition: (texmathp)
+# --
+\Downarrow$0

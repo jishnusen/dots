@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ceiling
+# key: ceil
+# group: Math Delimiters
+# condition: (texmathp)
+# --
+\left\lceil $0 \right\rceil

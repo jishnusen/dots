@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: text
+# key: txt
+# group: Math Miscellaneous
+# condition: (texmathp)
+# --
+\text{$0}

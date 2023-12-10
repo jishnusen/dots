@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mu
+# key: .m
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\mu$0

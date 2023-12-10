@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: stackrel
+# key: srel
+# group: Math Layout
+# condition: (texmathp)
+# --
+\stackrel{$1}{$0}

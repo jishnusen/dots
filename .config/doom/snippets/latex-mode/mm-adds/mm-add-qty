@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qty
+# key: qty
+# group: Math Additions
+# condition: (texmathp)
+# --
+\qty{$1}{$0}

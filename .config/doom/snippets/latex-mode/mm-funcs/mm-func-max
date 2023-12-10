@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: max
+# key: max
+# group: Math Functions
+# condition: (texmathp)
+# --
+\max $0

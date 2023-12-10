@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: exp
+# key: exp
+# group: Math Functions
+# condition: (texmathp)
+# --
+\exp $0

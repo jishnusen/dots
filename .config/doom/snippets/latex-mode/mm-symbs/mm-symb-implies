@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: implies
+# key: =>
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\implies $0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: nwarrow
+# key: nwarr
+# group: Math Arrows
+# condition: (texmathp)
+# --
+\nwarrow$0

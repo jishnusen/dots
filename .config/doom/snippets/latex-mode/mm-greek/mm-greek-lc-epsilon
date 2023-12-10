@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: epsilon
+# key: .e
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\epsilon$0

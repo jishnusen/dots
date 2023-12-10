@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Pr
+# key: Pr
+# group: Math Functions
+# condition: (texmathp)
+# --
+\Pr $0

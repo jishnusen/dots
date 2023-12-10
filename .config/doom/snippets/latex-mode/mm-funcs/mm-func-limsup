@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: limsup
+# key: limsup
+# group: Math Functions
+# condition: (texmathp)
+# --
+\limsup_{$1}$0

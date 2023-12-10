@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: beta
+# key: .b
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\beta$0

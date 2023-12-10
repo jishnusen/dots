@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: partial
+# key: pd
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\partial $0

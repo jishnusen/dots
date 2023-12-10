@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: log
+# key: log
+# group: Math Functions
+# condition: (texmathp)
+# --
+\log $0

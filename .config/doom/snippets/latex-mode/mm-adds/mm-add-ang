@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ang
+# key: ang
+# group: Math Additions
+# condition: (texmathp)
+# --
+\ang{$0}

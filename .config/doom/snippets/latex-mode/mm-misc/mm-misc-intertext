@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: intertext
+# key: itxt
+# group: Math Miscellaneous
+# condition: (texmathp)
+# --
+\intertext{$0}

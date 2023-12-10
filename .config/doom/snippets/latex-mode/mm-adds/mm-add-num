@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: num
+# key: num
+# group: Math Additions
+# condition: (texmathp)
+# --
+\num{$0}

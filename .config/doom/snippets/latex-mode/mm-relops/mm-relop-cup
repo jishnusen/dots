@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cup
+# key: cup
+# group: Math Relations
+# condition: (texmathp)
+# --
+\cup $0

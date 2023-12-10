@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mathbb
+# key: &bb
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\mathbb{$0}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: wp
+# key: wp
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\wp$0

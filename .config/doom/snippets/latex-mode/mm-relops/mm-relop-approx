@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: approx
+# key: ~~
+# group: Math Relations
+# condition: (texmathp)
+# --
+\approx $0

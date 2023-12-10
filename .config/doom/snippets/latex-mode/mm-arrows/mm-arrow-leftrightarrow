@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: leftrightarrow
+# key: lrarr
+# group: Math Arrows
+# condition: (texmathp)
+# --
+\leftrightarrow $0

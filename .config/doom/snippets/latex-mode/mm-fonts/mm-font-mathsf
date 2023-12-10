@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mathsf
+# key: &sf
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\mathsf{$0}

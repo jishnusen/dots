@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: preceq
+# key: -<=
+# group: Math Relations
+# condition: (texmathp)
+# --
+\preceq $0

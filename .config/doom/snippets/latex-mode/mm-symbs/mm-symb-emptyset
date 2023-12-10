@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: emptyset
+# key: 0/
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\emptyset$0

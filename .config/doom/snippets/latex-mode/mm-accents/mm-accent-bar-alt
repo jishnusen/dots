@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bar alt
+# key: bar
+# group: Math Accents
+# condition: (texmathp)
+# --
+\bar{$0}

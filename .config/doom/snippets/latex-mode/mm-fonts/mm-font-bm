@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bm
+# key: &bm
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\bm{$0}

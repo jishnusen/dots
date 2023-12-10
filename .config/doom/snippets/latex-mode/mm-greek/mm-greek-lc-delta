@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: delta
+# key: .d
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\delta$0

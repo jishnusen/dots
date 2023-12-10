@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: in
+# key: in
+# group: Math Relations
+# condition: (texmathp)
+# --
+\in $0

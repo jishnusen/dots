@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ast
+# key: **
+# group: Math Binary Operators
+# condition: (texmathp)
+# --
+\ast $0

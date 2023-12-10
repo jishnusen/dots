@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mathfrak
+# key: &fr
+# group: Math Font & Style
+# condition: (texmathp)
+# --
+\mathfrak{$0}

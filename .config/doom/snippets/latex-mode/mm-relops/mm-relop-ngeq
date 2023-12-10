@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ngeq
+# key: !>=
+# group: Math Relations
+# condition: (texmathp)
+# --
+\ngeq $0

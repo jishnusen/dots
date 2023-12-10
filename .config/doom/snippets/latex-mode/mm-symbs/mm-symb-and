@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: And
+# key: &&
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\And $0

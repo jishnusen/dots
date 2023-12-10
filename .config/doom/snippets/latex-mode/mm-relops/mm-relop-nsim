@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: nsim
+# key: !~
+# group: Math Relations
+# condition: (texmathp)
+# --
+\nsim $0

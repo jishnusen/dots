@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: eth
+# key: eth
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\eth$0

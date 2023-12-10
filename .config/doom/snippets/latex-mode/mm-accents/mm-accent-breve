@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: breve
+# key: 'u
+# group: Math Accents
+# condition: (texmathp)
+# --
+\breve{$0}

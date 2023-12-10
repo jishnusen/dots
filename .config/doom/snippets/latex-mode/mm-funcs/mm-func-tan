@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tan
+# key: tan
+# group: Math Functions
+# condition: (texmathp)
+# --
+\tan $0

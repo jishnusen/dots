@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ltimes
+# key: lx
+# group: Math Binary Operators
+# condition: (texmathp)
+# --
+\ltimes $0

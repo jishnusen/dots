@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: div
+# key: -:
+# group: Math Binary Operators
+# condition: (texmathp)
+# --
+\div $0

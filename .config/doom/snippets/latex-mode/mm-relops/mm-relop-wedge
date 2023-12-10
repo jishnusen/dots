@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: wedge
+# key:wedge
+# group: Math Relations
+# condition: (texmathp)
+# --
+\wedge $0

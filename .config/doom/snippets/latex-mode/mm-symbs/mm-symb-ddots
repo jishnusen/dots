@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ddots
+# key: ddots
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\ddots$0

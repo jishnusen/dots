@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: root
+# key: root
+# group: Math Roots
+# condition: (texmathp)
+# --
+\sqrt[$1]{$0}

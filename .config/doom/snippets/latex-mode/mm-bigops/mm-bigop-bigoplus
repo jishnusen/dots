@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bigoplus
+# key: O+
+# group: Math Big Operators
+# condition: (texmathp)
+# --
+\bigoplus_{$1}$0

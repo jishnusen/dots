@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: gamma
+# key: .g
+# group: Math Greek Letters
+# condition: (texmathp)
+# --
+\gamma$0

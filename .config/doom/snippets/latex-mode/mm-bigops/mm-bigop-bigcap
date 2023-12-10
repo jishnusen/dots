@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bigcap
+# key: bcap
+# group: Math Big Operators
+# condition: (texmathp)
+# --
+\bigcap_{$1}$0

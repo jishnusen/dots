@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: liminf
+# key: liminf
+# group: Math Functions
+# condition: (texmathp)
+# --
+\liminf_{$1}$0

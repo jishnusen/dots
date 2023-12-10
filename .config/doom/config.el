@@ -83,10 +83,35 @@
       "S-C-v" #'clipboard-yank
       "C-x C-k" #'doom/kill-this-buffer-in-all-windows
       )
+(after! evil-mode (unbind-key "q"))
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(setq shell-file-name (executable-find "bash"))
-(setq +latex-viewers '(pdf-tools))
-(setq font-latex-fontify-script nil)
-(setq conda-env-home-directory (expand-file-name "~/miniconda3/"))
+(setq shell-file-name (executable-find "bash")
+      +latex-viewers '(pdf-tools)
+      font-latex-fontify-script nil
+      conda-env-home-directory (expand-file-name "~/miniconda3/")
+      TeX-engine 'xetex
+      ispell-personal-dictionary (concat doom-user-dir "misc/ispell_personal")
+      yas-triggers-in-field t
+      company-minimum-prefix-length 5
+      )
 
+; fool magit into reading bare repos
+(defun my/magit-process-environment (env)
+  "Detect and set git -bare repo env vars when in tracked dotfile directories."
+  (let* ((default (file-name-as-directory (expand-file-name default-directory)))
+         (git-dir (expand-file-name "~/.dots/"))
+         (work-tree (expand-file-name "~/"))
+         (dotfile-dirs
+          (-map (apply-partially 'concat work-tree)
+                (-uniq (-keep #'file-name-directory (split-string (shell-command-to-string
+                (format "/usr/bin/git --git-dir=%s --work-tree=%s ls-tree --full-tree --name-only -r HEAD"
+                        git-dir work-tree))))))))
+    (push work-tree dotfile-dirs)
+    (when (member default dotfile-dirs)
+      (push (format "GIT_WORK_TREE=%s" work-tree) env)
+      (push (format "GIT_DIR=%s" git-dir) env)))
+  env)
+
+(advice-add 'magit-process-environment
+            :filter-return #'my/magit-process-environment)

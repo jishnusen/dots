@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sec
+# key: sec
+# group: Math Functions
+# condition: (texmathp)
+# --
+\sec $0

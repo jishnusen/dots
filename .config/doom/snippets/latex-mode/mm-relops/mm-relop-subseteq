@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: subseteq
+# key: ssub=
+# group: Math Relations
+# condition: (texmathp)
+# --
+\subseteq $0

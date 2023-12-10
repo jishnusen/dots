@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: unlhd
+# key: unlhd
+# group: Math Relations
+# condition: (texmathp)
+# --
+\unlhd $0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: iff
+# key: <=>
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\iff $0

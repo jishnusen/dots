@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: lnot
+# key: lnot
+# group: Math Symbols
+# condition: (texmathp)
+# --
+\lnot $0

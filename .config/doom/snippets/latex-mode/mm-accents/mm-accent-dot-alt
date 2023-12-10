@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: dot alt
+# key: dot
+# group: Math Accents
+# condition: (texmathp)
+# --
+\dot{$0}
