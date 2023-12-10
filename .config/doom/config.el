@@ -79,10 +79,14 @@
 
 (setq select-enable-clipboard nil)
 
-(map! "S-C-c" #'clipboard-kill-ring-save)
-(map! "S-C-v" #'clipboard-yank)
+(map! "S-C-c" #'clipboard-kill-ring-save
+      "S-C-v" #'clipboard-yank
+      "C-x C-k" #'doom/kill-this-buffer-in-all-windows
+      )
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (setq shell-file-name (executable-find "bash"))
 (setq +latex-viewers '(pdf-tools))
+(setq font-latex-fontify-script nil)
+(setq conda-env-home-directory (expand-file-name "~/miniconda3/"))
 
