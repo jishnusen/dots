@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: dots
-# key: ...
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\dots$0

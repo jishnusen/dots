@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: upsilon
-# key: .u
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\upsilon$0

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: matrix
-# key: :mmx
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{matrix}
- $0
-\end{matrix}

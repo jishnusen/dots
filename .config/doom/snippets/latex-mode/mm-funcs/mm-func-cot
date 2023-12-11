@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: cot
-# key: cot
-# group: Math Functions
-# condition: (texmathp)
-# --
-\cot $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ominus
-# key: o-
-# group: Math Binary Operators
-# condition: (texmathp)
-# --
-\ominus $0

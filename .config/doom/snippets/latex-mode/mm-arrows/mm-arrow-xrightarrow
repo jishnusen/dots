@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: xrightarrow
-# key: xrarr
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\xrightarrow{$0}

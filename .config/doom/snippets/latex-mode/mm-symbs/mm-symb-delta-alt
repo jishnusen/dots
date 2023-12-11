@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Delta alt
-# key: inc
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\Delta $0

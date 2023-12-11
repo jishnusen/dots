@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: barwedge
-# key: lnand
-# group: Math Relations
-# condition: (texmathp)
-# --
-\barwedge $0

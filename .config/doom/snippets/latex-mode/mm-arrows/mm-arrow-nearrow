@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: nearrow
-# key: nearr
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\nearrow$0

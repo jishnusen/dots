@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: vdots
-# key: vdots
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\vdots$0

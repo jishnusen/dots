@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: sup
-# key: sup
-# group: Math Functions
-# condition: (texmathp)
-# --
-\sup $0

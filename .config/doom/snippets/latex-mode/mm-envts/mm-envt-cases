@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: cases
-# key: :cas
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{cases}
- $0
-\end{cases}

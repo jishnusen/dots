@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bowtie
-# key: btie
-# group: Math Relations
-# condition: (texmathp)
-# --
-\bowtie $0

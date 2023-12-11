@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: nu
-# key: .n
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\nu$0

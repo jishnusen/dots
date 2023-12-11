@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: scriptscriptstyle
-# key: &xs
-# group: Math Font & Style
-# condition: (texmathp)
-# --
-\scriptscriptstyle $0

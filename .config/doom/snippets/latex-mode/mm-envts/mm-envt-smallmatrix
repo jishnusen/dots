@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: smallmatrix
-# key: :smx
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{smallmatrix}
- $0
-\end{smallmatrix}

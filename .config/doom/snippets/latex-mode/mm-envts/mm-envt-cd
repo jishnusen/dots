@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: CD
-# key: :cd
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{CD}
- $0
-\end{CD}

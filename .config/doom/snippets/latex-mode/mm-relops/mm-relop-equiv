@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: equiv
-# key: -=
-# group: Math Relations
-# condition: (texmathp)
-# --
-\equiv $0

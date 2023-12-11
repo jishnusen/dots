@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bmod
-# key: bmod
-# group: Math Functions
-# condition: (texmathp)
-# --
-\bmod $0

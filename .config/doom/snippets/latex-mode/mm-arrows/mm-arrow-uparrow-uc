@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Uparrow
-# key: Uarr
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\Uparrow$0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: cdot
-# key: *
-# group: Math Binary Operators
-# condition: (texmathp)
-# --
-\cdot $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: prod
-# key: prod
-# group: Math Big Operators
-# condition: (texmathp)
-# --
-\prod_{$1}$0

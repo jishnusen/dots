@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: pm
-# key: +-
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\pm $0

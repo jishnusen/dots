@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: nexists
-# key: !EE
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\nexists $0

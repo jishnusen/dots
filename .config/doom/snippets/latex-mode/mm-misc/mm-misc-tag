@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: tag
-# key: tag
-# group: Math Miscellaneous
-# condition: (texmathp)
-# --
-\tag{$0}

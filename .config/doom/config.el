@@ -41,7 +41,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -93,7 +93,6 @@
       TeX-engine 'xetex
       ispell-personal-dictionary (concat doom-user-dir "misc/ispell_personal")
       yas-triggers-in-field t
-      company-minimum-prefix-length 5
       )
 
 ; fool magit into reading bare repos
@@ -115,3 +114,25 @@
 
 (advice-add 'magit-process-environment
             :filter-return #'my/magit-process-environment)
+
+
+; interactive snippet expand for use with AAS
+(defun insnip (str)
+  (lambda () (interactive) (yas-expand-snippet str))
+  )
+
+(use-package! laas
+  :hook (LaTeX-mode . laas-mode)
+  :config
+  (aas-set-snippets 'laas-mode
+                    :cond (lambda () (not (texmathp)))
+                    "dm" (insnip "\\[\n$0\n\\]")
+                    )
+  )
+
+(setq projectile-project-search-path '("~/Documents/code/"))
+
+(add-hook 'LaTeX-mode-hook
+      (lambda ()
+        (make-local-variable 'line-move-visual)
+        (setq-local company-minimum-prefix-length 5)))

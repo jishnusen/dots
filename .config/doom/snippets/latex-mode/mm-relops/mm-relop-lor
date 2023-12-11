@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: lor
-# key: lor
-# group: Math Relations
-# condition: (texmathp)
-# --
-\lor $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: colon
-# key: ::
-# group: Math Relations
-# condition: (texmathp)
-# --
-\colon $0

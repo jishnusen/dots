@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ni
-# key: ni
-# group: Math Relations
-# condition: (texmathp)
-# --
-\ni $0

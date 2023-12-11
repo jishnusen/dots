@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: csc
-# key: csc
-# group: Math Functions
-# condition: (texmathp)
-# --
-\csc $0

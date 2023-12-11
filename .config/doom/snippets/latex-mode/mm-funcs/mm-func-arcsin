@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: arcsin
-# key: arcsin
-# group: Math Functions
-# condition: (texmathp)
-# --
-\arcsin $0

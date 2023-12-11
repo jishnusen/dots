@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: pmatrix
-# key: :pmx
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{pmatrix}
- $0
-\end{pmatrix}

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: mathit
-# key: &it
-# group: Math Font & Style
-# condition: (texmathp)
-# --
-\mathit{$0}

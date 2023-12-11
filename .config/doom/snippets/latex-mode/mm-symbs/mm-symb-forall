@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: forall
-# key: AA
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\forall $0

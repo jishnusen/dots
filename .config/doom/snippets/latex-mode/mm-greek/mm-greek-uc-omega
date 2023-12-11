@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Omega
-# key: .W
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\Omega$0

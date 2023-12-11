@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: implies alt
-# key: imp
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\implies $0

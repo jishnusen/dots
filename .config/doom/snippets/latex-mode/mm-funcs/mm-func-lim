@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: lim
-# key: lim
-# group: Math Functions
-# condition: (texmathp)
-# --
-\lim_{$1}$0

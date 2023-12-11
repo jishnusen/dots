@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: varsigma
-# key: .ss
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\varsigma$0

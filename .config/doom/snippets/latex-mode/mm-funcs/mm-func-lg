@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: lg
-# key: lg
-# group: Math Functions
-# condition: (texmathp)
-# --
-\lg $0

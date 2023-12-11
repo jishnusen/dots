@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: to
-# key: ->
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\to $0

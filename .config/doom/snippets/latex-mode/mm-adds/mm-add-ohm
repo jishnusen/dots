@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ohm
-# key: ohm
-# group: Math Additions
-# condition: (texmathp)
-# --
-\ohm$0

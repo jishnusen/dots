@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Leftarrow
-# key: Larr
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\Leftarrow $0

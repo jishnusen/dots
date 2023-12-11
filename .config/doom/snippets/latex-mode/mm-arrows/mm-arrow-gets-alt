@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: gets alt
-# key: gets
-# group: Math Arrows
-# condition: (texmathp)
-# --
-\gets $0

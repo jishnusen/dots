@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: sideset
-# key: sset
-# group: Math Layout
-# condition: (texmathp)
-# --
-\sideset{$1}{$0}

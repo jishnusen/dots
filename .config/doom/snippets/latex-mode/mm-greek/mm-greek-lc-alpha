@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: alpha
-# key: .a
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\alpha$0

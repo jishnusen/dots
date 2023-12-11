@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: rhd
-# key: rhd
-# group: Math Relations
-# condition: (texmathp)
-# --
-\rhd $0

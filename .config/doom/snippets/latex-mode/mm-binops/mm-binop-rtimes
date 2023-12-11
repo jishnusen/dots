@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: rtimes
-# key: rx
-# group: Math Binary Operators
-# condition: (texmathp)
-# --
-\rtimes $0

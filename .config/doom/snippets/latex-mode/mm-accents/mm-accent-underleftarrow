@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: underleftarrow
-# key: ularr
-# group: Math Accents
-# condition: (texmathp)
-# --
-\underleftarrow{$0}

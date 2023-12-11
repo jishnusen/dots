@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: land
-# key: land
-# group: Math Relations
-# condition: (texmathp)
-# --
-\land $0

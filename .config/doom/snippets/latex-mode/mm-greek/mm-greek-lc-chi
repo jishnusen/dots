@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: chi
-# key: .x
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\chi$0

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: gathered
-# key: :gtd
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{gathered}
- $0
-\end{gathered}

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: qtyrange
-# key: qrange
-# group: Math Additions
-# condition: (texmathp)
-# --
-\qtyrange{$1}{$2}{$0}

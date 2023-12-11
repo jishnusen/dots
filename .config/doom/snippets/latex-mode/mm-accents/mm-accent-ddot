@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ddot
-# key: ':
-# group: Math Accents
-# condition: (texmathp)
-# --
-\ddot{$0}

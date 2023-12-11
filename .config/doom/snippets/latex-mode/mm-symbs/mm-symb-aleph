@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: aleph
-# key: al
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\aleph$0

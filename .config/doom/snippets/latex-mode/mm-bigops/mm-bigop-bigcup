@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bigcup
-# key: bcup
-# group: Math Big Operators
-# condition: (texmathp)
-# --
-\bigcup_{$1}$0

@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: multline*
-# key: :mul*
-# group: Math Environments
-# --
-\begin{multline*}
- $0
-\end{multline*}

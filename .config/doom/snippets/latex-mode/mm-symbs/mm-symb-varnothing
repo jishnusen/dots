@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: varnothing
-# key: o/
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\varnothing$0

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Vmatrix
-# key: :Vmx
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{Vmatrix}
- $0
-\end{Vmatrix}

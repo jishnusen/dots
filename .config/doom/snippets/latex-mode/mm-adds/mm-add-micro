@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: micro
-# key: mi
-# group: Math Additions
-# condition: (texmathp)
-# --
-\micro $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: neg
-# key: neg
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\neg $0

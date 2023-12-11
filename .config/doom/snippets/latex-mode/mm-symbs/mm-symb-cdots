@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: cdots
-# key: cdots
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\cdots $0

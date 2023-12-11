@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: hbar
-# key: hbar
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\hbar$0

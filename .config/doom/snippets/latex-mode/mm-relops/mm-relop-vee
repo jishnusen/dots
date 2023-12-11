@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: vee
-# key: vee
-# group: Math Relations
-# condition: (texmathp)
-# --
-\vee $0

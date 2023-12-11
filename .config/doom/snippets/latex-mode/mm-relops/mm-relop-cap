@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: cap
-# key: cap
-# group: Math Relations
-# condition: (texmathp)
-# --
-\cap $0

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: split
-# key: :spl
-# group: Math Environments
-# condition: (texmathp)
-# --
-\begin{split}
- $0
-\end{split}

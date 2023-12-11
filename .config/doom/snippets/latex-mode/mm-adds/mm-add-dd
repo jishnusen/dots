@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: dd
-# key: dd
-# group: Math Additions
-# condition: (texmathp)
-# --
-\dd $0

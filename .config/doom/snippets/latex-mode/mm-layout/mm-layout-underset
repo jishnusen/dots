@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: underset
-# key: uset
-# group: Math Layout
-# condition: (texmathp)
-# --
-\underset{$1}{$0}

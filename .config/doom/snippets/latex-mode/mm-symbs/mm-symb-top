@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: top
-# key: top
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\top$0

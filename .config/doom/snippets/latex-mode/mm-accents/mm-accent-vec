@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: vec
-# key: '>
-# group: Math Accents
-# condition: (texmathp)
-# --
-\vec{$0}

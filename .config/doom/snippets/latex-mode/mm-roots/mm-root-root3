@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: root3
-# key: cbr
-# group: Math Roots
-# condition: (texmathp)
-# --
-\sqrt[3]{$0}

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: sim
-# key: ~
-# group: Math Relations
-# condition: (texmathp)
-# --
-\sim $0

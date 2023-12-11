@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: unit
-# key: unit
-# group: Math Additions
-# condition: (texmathp)
-# --
-\unit{$0}

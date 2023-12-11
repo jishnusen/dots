@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: mathscr
-# key: &sc
-# group: Math Font & Style
-# condition: (texmathp)
-# --
-\mathscr{$0}

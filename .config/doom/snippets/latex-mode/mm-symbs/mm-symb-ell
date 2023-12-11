@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ell
-# key: ell
-# group: Math Symbols
-# condition: (texmathp)
-# --
-\ell$0

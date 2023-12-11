@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: dim
-# key: dim
-# group: Math Functions
-# condition: (texmathp)
-# --
-\dim $0

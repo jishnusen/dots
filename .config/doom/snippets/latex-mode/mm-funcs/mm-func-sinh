@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: sinh
-# key: sinh
-# group: Math Functions
-# condition: (texmathp)
-# --
-\sinh $0

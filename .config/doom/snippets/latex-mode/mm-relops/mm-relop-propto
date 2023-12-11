@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: propto
-# key: prop
-# group: Math Relations
-# condition: (texmathp)
-# --
-\propto $0

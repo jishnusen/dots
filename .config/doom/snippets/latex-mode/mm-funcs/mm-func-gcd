@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: gcd
-# key: gcd
-# group: Math Functions
-# condition: (texmathp)
-# --
-\gcd $0

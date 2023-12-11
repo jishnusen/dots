@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: zeta
-# key: .z
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\zeta$0

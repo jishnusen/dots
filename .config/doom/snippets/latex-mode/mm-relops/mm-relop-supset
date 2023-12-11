@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: supset
-# key: ssup
-# group: Math Relations
-# condition: (texmathp)
-# --
-\supset $0

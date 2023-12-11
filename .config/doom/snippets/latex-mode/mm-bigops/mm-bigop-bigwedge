@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bigwedge
-# key: bwedge
-# group: Math Big Operators
-# condition: (texmathp)
-# --
-\bigwedge_{$1}$0

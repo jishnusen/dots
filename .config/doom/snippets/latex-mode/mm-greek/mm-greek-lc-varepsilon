@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: varepsilon
-# key: .ee
-# group: Math Greek Letters
-# condition: (texmathp)
-# --
-\varepsilon$0

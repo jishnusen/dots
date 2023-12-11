@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: tanh
-# key: tanh
-# group: Math Functions
-# condition: (texmathp)
-# --
-\tanh $0

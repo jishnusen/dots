@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: acute
-# key: '/
-# group: Math Accents
-# condition: (texmathp)
-# --
-\acute{$0}
