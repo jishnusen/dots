@@ -51,10 +51,11 @@
 
 
 ;;; -- Latex --
+(setq +latex-viewers '(pdf-tools))
 (after! latex
-  (setq +latex-viewers '(pdf-tools)
-        font-latex-fontify-script nil
+  (setq font-latex-fontify-script nil
         TeX-engine 'xetex
+        TeX-command-extra-options "-shell-escape"
         )
   )
 
