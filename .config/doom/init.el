@@ -36,7 +36,7 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
-       ;;ligatures         ; ligatures and symbols to make your code pretty again
+       ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
@@ -56,7 +56,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       format  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
@@ -154,15 +154,15 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org               ; organize your plain life in plain text
-        +dragndrop                  ; drag & drop files/images into org buffers
-        ;;+hugo                     ; use Emacs for hugo blogging
-        +noter                      ; enhanced PDF notetaking
-        +jupyter                    ; ipython/jupyter support for babel
-        +pandoc                     ; export-with-pandoc support
-        +gnuplot                    ; who doesn't like pretty pictures
-        ;;+pomodoro                 ; be fruitful with the tomato technique
-        )
+       ;; (org               ; organize your plain life in plain text
+       ;;  +dragndrop                  ; drag & drop files/images into org buffers
+       ;;  ;;+hugo                     ; use Emacs for hugo blogging
+       ;;  +noter                      ; enhanced PDF notetaking
+       ;;  +jupyter                    ; ipython/jupyter support for babel
+       ;;  +pandoc                     ; export-with-pandoc support
+       ;;  +gnuplot                    ; who doesn't like pretty pictures
+       ;;  ;;+pomodoro                 ; be fruitful with the tomato technique
+       ;;  )
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +conda +lsp +pyright)            ; beautiful is better than ugly
@@ -174,7 +174,7 @@
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;(rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       ;;(scheme +guile)   ; a fully conniving family of lisps
+       (scheme +racket)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.

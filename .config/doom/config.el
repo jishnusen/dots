@@ -51,13 +51,12 @@
 
 
 ;;; -- Latex --
-(setq +latex-viewers '(pdf-tools))
+(setq TeX-save-query nil
+      TeX-command-extra-options "-shell-escape")
 (after! latex
-  (setq font-latex-fontify-script nil
-        TeX-engine 'xetex
-        TeX-command-extra-options "-shell-escape"
-        )
-  )
+  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t)))
+(setq +latex-viewers '(pdf-tools evince zathura okular skim sumatrapdf)
+      font-latex-fontify-script nil)
 
 ; stop autocomplete when i'm typing english
 (add-hook 'LaTeX-mode-hook
