@@ -26,7 +26,8 @@
       ispell-personal-dictionary (concat doom-user-dir "misc/ispell_personal")
       yas-triggers-in-field t
       )
-
+(setq ispell-program-name "hunspell")
+(ispell-check-version) ;; hack, apparently this makes ispell set its vars correctly
 
 ;;; -- Magit --
 ; fool magit into reading bare repos
@@ -75,6 +76,8 @@
   (aas-set-snippets 'laas-mode
                     :cond (lambda () (not (texmathp)))
                     "dm" (insnip "\\[\n$0\n\\]")
+                    "aln" (insnip "\\begin{align*}\n\t$0\n\\end{align*}")
+                    "pf" (insnip "\\begin{proof}\n$0\n\\end{proof}")
                     )
   )
 

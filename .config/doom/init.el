@@ -143,7 +143,7 @@
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
-       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        (latex +latexmk)             ; writing papers in Emacs has never been so fun
@@ -154,15 +154,15 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       ;; (org               ; organize your plain life in plain text
-       ;;  +dragndrop                  ; drag & drop files/images into org buffers
-       ;;  ;;+hugo                     ; use Emacs for hugo blogging
-       ;;  +noter                      ; enhanced PDF notetaking
-       ;;  +jupyter                    ; ipython/jupyter support for babel
-       ;;  +pandoc                     ; export-with-pandoc support
-       ;;  +gnuplot                    ; who doesn't like pretty pictures
-       ;;  ;;+pomodoro                 ; be fruitful with the tomato technique
-       ;;  )
+       (org               ; organize your plain life in plain text
+        +dragndrop                  ; drag & drop files/images into org buffers
+        ;;+hugo                     ; use Emacs for hugo blogging
+        +noter                      ; enhanced PDF notetaking
+        ;; +jupyter                    ; ipython/jupyter support for babel
+        +pandoc                     ; export-with-pandoc support
+        +gnuplot                    ; who doesn't like pretty pictures
+        ;;+pomodoro                 ; be fruitful with the tomato technique
+        )
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +conda +lsp +pyright)            ; beautiful is better than ugly
