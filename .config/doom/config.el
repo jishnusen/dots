@@ -76,6 +76,7 @@
             (push '("\\impliedby" . "⟸") prettify-symbols-alist)
             (push '("\\land" . "∧") prettify-symbols-alist)
             (push '("\\lor" . "∨") prettify-symbols-alist)
+            (push (cons "\\textdegree{}" (cdr (assoc "\\textdegree" prettify-symbols-alist))) prettify-symbols-alist)
             (prettify-symbols-mode t)
             ))
 
