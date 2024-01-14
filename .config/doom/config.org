@@ -1,0 +1,262 @@
+#+title: Doom Emacs Configuration
+#+author: Jishnu Sen
+#+property: header-args :exports code :results silent :tangle yes :comment no
+#+startup: overview
+
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t -*-
+#+end_src
+
+* Doom theme definitions
+We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-one-light
+      doom-font (font-spec :family "Iosevka" :size 14)
+      doom-variable-pitch-font (font-spec :family "ETbb" :size 14))
+#+end_src
+
+And startup options/hacks. These are required and may be specific to my system.
+#+begin_src emacs-lisp
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(setq shell-file-name (executable-find "bash")
+      conda-env-home-directory (expand-file-name "~/miniconda3/")
+      ispell-personal-dictionary (concat doom-user-dir "misc/ispell_personal")
+      yas-triggers-in-field t
+      )
+(after! spell-fu
+  (setq ispell-program-name "hunspell")
+  (ispell-check-version) ;; hack, apparently this makes ispell set its vars correctly
+  )
+#+end_src
+
+* Line numbers
+I have line numbers disabled in the interest of performance. See [[https://discourse.doomemacs.org/t/why-is-emacs-doom-slow/83/3]].
+
+#+begin_src emacs-lisp
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type nil)
+#+end_src
+
+* Org Mode
+#+begin_src emacs-lisp
+(setq org-directory "~/Documents/org/")
+#+end_src
+
+* Keybinds
+** Vanilla Binds
+These are "global" binds, so make sure to use keys that can be accessed from any Evil mode.
+#+begin_src emacs-lisp
+(map! :g "C-x C-k" #'kill-this-buffer)
+#+end_src
+
+** Evil Mode Binds
+These binds are specific to Evil modes (normal, insert, etc.)
+#+begin_src emacs-lisp
+;; disable recording macros (i'm too dumb for this feature i think)
+(map! :n "q" nil)
+#+end_src
+
+* Package Configurations
+** Magit
+I try to use magit to interface with git. But, since my dotfiles are cloned as a bare repo, Magit is unable to see them. This function makes magit check if the CWD is tracked by my dotfiles clone. This has the clone location of my dotfiles hardcoded, maybe I will find a better way to implement this some other time.
+#+begin_src emacs-lisp
+(defun my/magit-process-environment (env)
+  "Detect and set git -bare repo env vars when in tracked dotfile directories."
+  (let* ((default (file-name-as-directory (expand-file-name default-directory)))
+         (git-dir (expand-file-name "~/.dots/"))
+         (work-tree (expand-file-name "~/"))
+         (dotfile-dirs
+          (-map (apply-partially 'concat work-tree)
+                (-uniq (-keep #'file-name-directory
+                              (split-string
+                               (shell-command-to-string
+                                (format "/usr/bin/git --git-dir=%s --work-tree=%s ls-tree --full-tree --name-only -r HEAD"
+                                        git-dir work-tree))))))))
+    (push work-tree dotfile-dirs)
+    (when (member default dotfile-dirs)
+      (push (format "GIT_WORK_TREE=%s" work-tree) env)
+      (push (format "GIT_DIR=%s" git-dir) env)))
+  env)
+
+(advice-add 'magit-process-environment
+            :filter-return #'my/magit-process-environment)
+#+end_src
+
+** LaTeX
+*** AUCTeX
+#+begin_src emacs-lisp
+(setq TeX-save-query nil
+      TeX-command-extra-options "-shell-escape")
+(after! latex
+  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  )
+(setq +latex-viewers '(pdf-tools evince zathura okular skim sumatrapdf)
+      font-latex-fontify-script nil
+      font-latex-fontify-sectioning 1.0
+      )
+
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (make-local-variable 'line-move-visual)
+            ;; stop autocomplete when i'm typing english
+            (setq-local company-minimum-prefix-length 5)
+            ;; pretty unicodisms that arent default
+            (push '("\\implies" . "⟹") prettify-symbols-alist)
+            (push '("\\impliedby" . "⟸") prettify-symbols-alist)
+            (push '("\\land" . "∧") prettify-symbols-alist)
+            (push '("\\lor" . "∨") prettify-symbols-alist)
+            (push (cons "\\textdegree{}" (cdr (assoc "\\textdegree" prettify-symbols-alist))) prettify-symbols-alist)
+            (prettify-symbols-mode t)
+            ))
+#+end_src
+*** LAAS
+This is a package outside doom from tecosaur that sets up auto-inserting snippets for latex (and other languages). I need some extra snippets for environment insertion since I don't use CDLatex. To get this to work, we first make a function to expand YAS snippets to specify them easily:
+#+begin_src emacs-lisp
+(defun insnip (str)
+  (lambda () (interactive) (yas-expand-snippet str)))
+#+end_src
+
+Then, I enable LAAS-mode on LaTeX files, and configure my yas snippets that I want to be auto-inserted. TODO: I may want to save these in my yas snips directory.
+#+begin_src emacs-lisp
+(use-package! laas
+  :hook (LaTeX-mode . laas-mode)
+  :config
+  (aas-set-snippets 'laas-mode
+    :cond (lambda () (not (texmathp)))
+    "dm" (insnip "\\[\n$0\n\\]")
+    "aln" (insnip "\\begin{align*}\n\t$0\n\\end{align*}")
+    "pf" (insnip "\\begin{proof}\n$0\n\\end{proof}")
+    )
+  )
+#+end_src
+
+** Common Lisp
+Set up SLY, defaults are sane but I want a fresh repl for every file.
+#+begin_src emacs-lisp
+(after! common-lisp
+  (setq sly-command-switch-to-existing-lisp 'never)
+  )
+#+end_src
+
+** Org
+inception :)
+
+I have a lot of macros in my LaTeX preamble that are compatible with MathJax. To use them, I set up a babel language to read macros in the HTML header. See the Emacs stack exchange [[https://emacs.stackexchange.com/questions/54703/exporting-latex-commands-to-html-mathjax
+][post]].
+#+begin_src emacs-lisp
+(after! org
+  (setq org-highlight-latex-and-related '(native script entities))
+  (add-to-list 'org-src-lang-modes '("latex-macros" . latex))
+
+  (defvar org-babel-default-header-args:latex-macros
+    '((:results . "raw")
+      (:exports . "results")))
+
+  (defun prefix-all-lines (pre body)
+    (with-temp-buffer
+      (insert body)
+      (string-insert-rectangle (point-min) (point-max) pre)
+      (buffer-string)))
+
+  (defun org-babel-execute:latex-macros (body _params)
+    (concat
+     (prefix-all-lines "#+LATEX_HEADER: " body)
+     "\n#+HTML_HEAD_EXTRA: <div style=\"display: none\"> \\(\n"
+     (prefix-all-lines "#+HTML_HEAD_EXTRA: " body)
+     "\n#+HTML_HEAD_EXTRA: \\)</div>\n"))
+  )
+#+end_src
+
+** YAS
+Not to be confused with LAAS, YAS is the snippet package I use for TAB-inserted snippets. It also supports the following macro for inserting a snippet (which I define in ~snippets/{ftype}/__~) based on file type.
+#+begin_src emacs-lisp
+;;; YASnippet
+(set-file-template! "\\.tex$" :trigger "__" :mode 'latex-mode)
+(set-file-template! "\\.org$" :trigger "__" :mode 'org-mode)
+(set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
+#+end_src
+
+These are a set of functions taken from tecosaur's config to make the src block insertion snippet work. They are used inside my snippet definitions.
+#+begin_src emacs-lisp
+(defun +yas/org-src-header-p ()
+  "Determine whether `point' is within a src-block header or header-args."
+  (pcase (org-element-type (org-element-context))
+    ('src-block (< (point) ; before code part of the src-block
+                   (save-excursion (goto-char (org-element-property :begin (org-element-context)))
+                                   (forward-line 1)
+                                   (point))))
+    ('inline-src-block (< (point) ; before code part of the inline-src-block
+                          (save-excursion (goto-char (org-element-property :begin (org-element-context)))
+                                          (search-forward "]{")
+                                          (point))))
+    ('keyword (string-match-p "^header-args" (org-element-property :value (org-element-context))))))
+(defun +yas/org-prompt-header-arg (arg question values)
+  "Prompt the user to set ARG header property to one of VALUES with QUESTION.
+The default value is identified and indicated. If either default is selected,
+or no selection is made: nil is returned."
+  (let* ((src-block-p (not (looking-back "^#\\+property:[ \t]+header-args:.*" (line-beginning-position))))
+         (default
+           (or
+            (cdr (assoc arg
+                        (if src-block-p
+                            (nth 2 (org-babel-get-src-block-info t))
+                          (org-babel-merge-params
+                           org-babel-default-header-args
+                           (let ((lang-headers
+                                  (intern (concat "org-babel-default-header-args:"
+                                                  (+yas/org-src-lang)))))
+                             (when (boundp lang-headers) (eval lang-headers t)))))))
+            ""))
+         default-value)
+    (setq values (mapcar
+                  (lambda (value)
+                    (if (string-match-p (regexp-quote value) default)
+                        (setq default-value
+                              (concat value " "
+                                      (propertize "(default)" 'face 'font-lock-doc-face)))
+                      value))
+                  values))
+    (let ((selection (consult--read values :prompt question :default default-value)))
+      (unless (or (string-match-p "(default)$" selection)
+                  (string= "" selection))
+        selection))))
+(defun +yas/org-src-lang ()
+  "Try to find the current language of the src/header at `point'.
+Return nil otherwise."
+  (let ((context (org-element-context)))
+    (pcase (org-element-type context)
+      ('src-block (org-element-property :language context))
+      ('inline-src-block (org-element-property :language context))
+      ('keyword (when (string-match "^header-args:\\([^ ]+\\)" (org-element-property :value context))
+                  (match-string 1 (org-element-property :value context)))))))
+
+(defun +yas/org-last-src-lang ()
+  "Return the language of the last src-block, if it exists."
+  (save-excursion
+    (beginning-of-line)
+    (when (re-search-backward "^[ \t]*#\\+begin_src" nil t)
+      (org-element-property :language (org-element-context)))))
+
+(defun +yas/org-most-common-no-property-lang ()
+  "Find the lang with the most source blocks that has no global header-args, else nil."
+  (let (src-langs header-langs)
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward "^[ \t]*#\\+begin_src" nil t)
+        (push (+yas/org-src-lang) src-langs))
+      (goto-char (point-min))
+      (while (re-search-forward "^[ \t]*#\\+property: +header-args" nil t)
+        (push (+yas/org-src-lang) header-langs)))
+
+    (setq src-langs
+          (mapcar #'car
+                  ;; sort alist by frequency (desc.)
+                  (sort
+                   ;; generate alist with form (value . frequency)
+                   (cl-loop for (n . m) in (seq-group-by #'identity src-langs)
+                            collect (cons n (length m)))
+                   (lambda (a b) (> (cdr a) (cdr b))))))
+
+    (car (cl-set-difference src-langs header-langs :test #'string=))))
+#+end_src
