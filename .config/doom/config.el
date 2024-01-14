@@ -126,3 +126,37 @@
 (set-file-template! "\\.tex$" :trigger "__" :mode 'latex-mode)
 (set-file-template! "\\.org$" :trigger "__" :mode 'org-mode)
 (set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
+
+;;; YASnippet
+;; From https://blog.florianschroedl.com/org-mode-src-snippet-with-automatic-language-attribute
+(defun +yas/org-src-lang ()
+  "Try to find the current language of the src/header at point.
+Return nil otherwise."
+  (save-excursion
+    (pcase
+        (downcase
+         (buffer-substring-no-properties
+          (goto-char (line-beginning-position))
+          (or (ignore-errors (1- (search-forward " " (line-end-position))))
+              (1+ (point)))))
+      ("#+property:"
+       (when (re-search-forward "header-args:")
+         (buffer-substring-no-properties
+          (point)
+          (or (and (forward-symbol 1) (point))
+              (1+ (point))))))
+      ("#+begin_src"
+       (buffer-substring-no-properties
+        (point)
+        (or (and (forward-symbol 1) (point))
+            (1+ (point)))))
+      ("#+header:"
+       (search-forward "#+begin_src")
+       (+yas/org-src-lang))
+      (_ nil))))
+
+(defun +yas/org-last-src-lang ()
+  (save-excursion
+    (beginning-of-line)
+    (when (search-backward "#+begin_src" nil t)
+      (+yas/org-src-lang))))
