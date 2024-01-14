@@ -1,16 +1,24 @@
 # -*- mode: snippet -*-
 # name: LaTeX template                                                                                         
 # --
-\documentclass${1:[${2:opt1,...}]}{`(tec/yas-latex-get-class-choice)`}
+\documentclass[class=article, crop=false]{standalone}
+\input{../Preamble}
+\usepackage[margin=1in]{geometry}
+\fancyhf{}
+\lhead{Jishnu Sen}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+\usepackage{parskip}
+\usepackage{bytefield}
+\setlist[enumerate]{label={(\alph*)}}
 
-\title{${3:`(s-titleized-words (file-name-base (or buffer-file-name "new buffer")))`}}
-\author{${4:`(user-full-name)`}}
-\date{${5:`(format-time-string "%Y-%m-%d")`}}
-`(if (tec/yas-latex-preamble-if) tec/yas-latex-template-preamble "")`
+
 \begin{document}
-
-\maketitle
 
 $0
 
 \end{document}
+
+% Local Variables:
+% TeX-engine: xetex
+% End:

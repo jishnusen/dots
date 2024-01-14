@@ -1,7 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-tokyo-night
-      doom-font (font-spec :family "Iosevka" :size 14))
+(setq doom-theme 'doom-one-light
+      doom-font (font-spec :family "Iosevka" :size 14)
+      doom-variable-pitch-font (font-spec :family "ETbb" :size 14))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -59,15 +60,24 @@
 (setq TeX-save-query nil
       TeX-command-extra-options "-shell-escape")
 (after! latex
-  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t)))
+  (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  )
 (setq +latex-viewers '(pdf-tools evince zathura okular skim sumatrapdf)
-      font-latex-fontify-script nil)
+      font-latex-fontify-script nil
+      font-latex-fontify-sectioning 1.0
+      )
 
 ;; stop autocomplete when i'm typing english
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (make-local-variable 'line-move-visual)
-            (setq-local company-minimum-prefix-length 5)))
+            (setq-local company-minimum-prefix-length 5)
+            (push '("\\implies" . "⟹") prettify-symbols-alist)
+            (push '("\\impliedby" . "⟸") prettify-symbols-alist)
+            (push '("\\land" . "∧") prettify-symbols-alist)
+            (push '("\\lor" . "∨") prettify-symbols-alist)
+            (prettify-symbols-mode t)
+            ))
 
 ;; - auto insert math snips
 ;; interactive snippet expand for use with AAS
@@ -78,11 +88,11 @@
   :hook (LaTeX-mode . laas-mode)
   :config
   (aas-set-snippets 'laas-mode
-                    :cond (lambda () (not (texmathp)))
-                    "dm" (insnip "\\[\n$0\n\\]")
-                    "aln" (insnip "\\begin{align*}\n\t$0\n\\end{align*}")
-                    "pf" (insnip "\\begin{proof}\n$0\n\\end{proof}")
-                    )
+    :cond (lambda () (not (texmathp)))
+    "dm" (insnip "\\[\n$0\n\\]")
+    "aln" (insnip "\\begin{align*}\n\t$0\n\\end{align*}")
+    "pf" (insnip "\\begin{proof}\n$0\n\\end{proof}")
+    )
   )
 
 ;;; -- Common Lisp --
@@ -112,3 +122,7 @@
      (prefix-all-lines "#+HTML_HEAD_EXTRA: " body)
      "\n#+HTML_HEAD_EXTRA: \\)</div>\n"))
   )
+
+(set-file-template! "\\.tex$" :trigger "__" :mode 'latex-mode)
+(set-file-template! "\\.org$" :trigger "__" :mode 'org-mode)
+(set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
