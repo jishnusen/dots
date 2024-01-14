@@ -3,13 +3,16 @@
 #+property: header-args :exports code :results silent :tangle yes :comment no
 #+startup: overview
 
-#+begin_src emacs-lisp
-;; -*- lexical-binding: t -*-
-#+end_src
+This file is my so called "literate" Doom Emacs configuration. It is automatically tangled by doom into ~config.el~ when the file is edited in Doom or I run ~doom sync~. I'm currently using this file to:
+1. Store modifications to functions/variables used by Doom itself, such as theme and UX.
+2. Environment-specific changes
+3. Emacs package (mostly Doom package) configurations
+4. Utility function definitions
 
 * Doom theme definitions
 We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
 #+begin_src emacs-lisp
+;; -*- lexical-binding: t -*-
 (setq doom-theme 'doom-one-light
       doom-font (font-spec :family "Iosevka" :size 14)
       doom-variable-pitch-font (font-spec :family "ETbb" :size 14))
