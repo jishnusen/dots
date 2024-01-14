@@ -67,11 +67,12 @@
       font-latex-fontify-sectioning 1.0
       )
 
-;; stop autocomplete when i'm typing english
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (make-local-variable 'line-move-visual)
+            ;; stop autocomplete when i'm typing english
             (setq-local company-minimum-prefix-length 5)
+            ;; pretty unicodisms that arent default
             (push '("\\implies" . "⟹") prettify-symbols-alist)
             (push '("\\impliedby" . "⟸") prettify-symbols-alist)
             (push '("\\land" . "∧") prettify-symbols-alist)
@@ -124,15 +125,14 @@
      "\n#+HTML_HEAD_EXTRA: \\)</div>\n"))
   )
 
+;;; YASnippet
 (set-file-template! "\\.tex$" :trigger "__" :mode 'latex-mode)
 (set-file-template! "\\.org$" :trigger "__" :mode 'org-mode)
 (set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
 
-;;; YASnippet
 ;; From https://blog.florianschroedl.com/org-mode-src-snippet-with-automatic-language-attribute
 (defun +yas/org-src-lang ()
-  "Try to find the current language of the src/header at point.
-Return nil otherwise."
+  "Find the current language of the src/header at point || nil"
   (save-excursion
     (pcase
         (downcase
