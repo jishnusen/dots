@@ -145,8 +145,7 @@ Set up SLY, defaults are sane but I want a fresh repl for every file.
 ** Org
 inception :)
 
-I have a lot of macros in my LaTeX preamble that are compatible with MathJax. To use them, I set up a babel language to read macros in the HTML header. See the Emacs stack exchange [[https://emacs.stackexchange.com/questions/54703/exporting-latex-commands-to-html-mathjax
-][post]].
+I have a lot of macros in my LaTeX preamble that are compatible with MathJax. To use them, I set up a babel language to read macros in the HTML header. See the Emacs stack exchange [[https://emacs.stackexchange.com/questions/54703/exporting-latex-commands-to-html-mathjax][post]].
 #+begin_src emacs-lisp
 (after! org
   (setq org-highlight-latex-and-related '(native script entities))
