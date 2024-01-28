@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: LaTeX template (light)
+# --
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble_light}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\fancyhf{}
+\lhead{Jishnu Sen}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+\usepackage{parskip}
+
+
+\begin{document}
+
+$0
+
+\end{document}
+
+% Local Variables:
+% TeX-engine: xetex
+% End:

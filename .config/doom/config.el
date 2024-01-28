@@ -1,67 +1,26 @@
-#+title: Doom Emacs Configuration
-#+author: Jishnu Sen
-#+property: header-args :exports code :results silent :tangle yes :comment no
-#+startup: overview
-
-This file is my so called "literate" Doom Emacs configuration. It is
-automatically tangled by doom into ~config.el~ when the file is edited in Doom
-or I run ~doom sync~. I'm currently using this file to:
-1. Store modifications to functions/variables used by Doom itself, such as theme and UX.
-2. Environment-specific changes
-3. Emacs package (mostly Doom package) configurations
-4. Utility function definitions
-
-* Doom theme definitions
-We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
-#+begin_src emacs-lisp
 ;; -*- lexical-binding: t -*-
 (setq doom-theme 'doom-earl-grey
       doom-font (font-spec :family "Iosevka" :size 14)
       doom-variable-pitch-font (font-spec :family "ETbb" :size 14))
-#+end_src
 
-And startup options/hacks. These are required and may be specific to my system.
-#+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (setq shell-file-name (executable-find "bash")
       conda-env-home-directory (expand-file-name "~/miniconda3/")
       yas-triggers-in-field t
       )
 (add-hook 'text-mode-hook #'auto-fill-mode)
-#+end_src
 
-* Line numbers
-I have line numbers disabled in the interest of performance. See [[https://discourse.doomemacs.org/t/why-is-emacs-doom-slow/83/3]].
-
-#+begin_src emacs-lisp
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
-#+end_src
 
-* Org Mode
-#+begin_src emacs-lisp
 (setq org-directory "~/Documents/org/")
-#+end_src
 
-* Keybinds
-** Vanilla Binds
-These are "global" binds, so make sure to use keys that can be accessed from any Evil mode.
-#+begin_src emacs-lisp
 (map! :g "C-x C-k" #'kill-this-buffer)
-#+end_src
 
-** Evil Mode Binds
-These binds are specific to Evil modes (normal, insert, etc.)
-#+begin_src emacs-lisp
 ;; disable recording macros (i'm too dumb for this feature i think)
 (map! :n "q" nil)
-#+end_src
 
-* Package Configurations
-** Magit
-I try to use magit to interface with git. But, since my dotfiles are cloned as a bare repo, Magit is unable to see them. This function makes magit check if the CWD is tracked by my dotfiles clone. This has the clone location of my dotfiles hardcoded, maybe I will find a better way to implement this some other time.
-#+begin_src emacs-lisp
 (defun my/magit-process-environment (env)
   "Detect and set git -bare repo env vars when in tracked dotfile directories."
   (let* ((default (file-name-as-directory (expand-file-name default-directory)))
@@ -82,11 +41,7 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
 
 (advice-add 'magit-process-environment
             :filter-return #'my/magit-process-environment)
-#+end_src
 
-** LaTeX
-*** AUCTeX
-#+begin_src emacs-lisp
 (setq TeX-save-query nil
       TeX-command-extra-options "-shell-escape")
 (after! latex
@@ -123,21 +78,10 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
             (setq TeX-insert-macro-default-style 'mandatory-args-only)
             (prettify-setup)
             ))
-#+end_src
-*** LAAS
-This is a package outside doom from tecosaur that sets up auto-inserting
-snippets for latex (and other languages). I need some extra snippets for
-environment insertion since I don't use CDLatex. To get this to work, we first
-make a function to expand YAS snippets to specify them easily:
-#+begin_src emacs-lisp
+
 (defun insnip (str)
   (lambda () (interactive) (yas-expand-snippet str)))
-#+end_src
 
-Then, I enable LAAS-mode on LaTeX files, and configure my yas snippets that I
-want to be auto-inserted. TODO: I may want to save these in my yas snips
-directory.
-#+begin_src emacs-lisp
 (use-package! laas
   :hook (LaTeX-mode . laas-mode)
   :config
@@ -153,11 +97,7 @@ directory.
     "'o" (lambda () (interactive) (laas-wrap-previous-object "mathbb"))
     )
   )
-#+end_src
 
-*** Spell Check
-Uses ~spell-fu~ for spell check.
-#+begin_src emacs-lisp
 (after! spell-fu
   (setq ispell-program-name "hunspell"
         ispell-personal-dictionary (concat doom-user-dir "misc/ispell_personal")
@@ -165,10 +105,7 @@ Uses ~spell-fu~ for spell check.
   (cl-pushnew 'font-lock-constant-face (alist-get 'latex-mode +spell-excluded-faces-alist))
   (ispell-check-version) ;; hack, apparently this makes ispell set its vars correctly
   )
-#+end_src
-*** PDF Tools
-For previews
-#+begin_src emacs-lisp
+
 (use-package! pdf-tools
   :defer t
   :config
@@ -176,20 +113,11 @@ For previews
   (setq pdf-sync-forward-display-action t)
   (setq-default pdf-view-display-size 'fit-page)
   )
-#+end_src
-** Common Lisp
-Set up SLY, defaults are sane but I want a fresh repl for every file.
-#+begin_src emacs-lisp
+
 (after! common-lisp
   (setq sly-command-switch-to-existing-lisp 'never)
   )
-#+end_src
 
-** Org
-inception :)
-
-I have a lot of macros in my LaTeX preamble that are compatible with MathJax. To use them, I set up a babel language to read macros in the HTML header. See the Emacs stack exchange [[https://emacs.stackexchange.com/questions/54703/exporting-latex-commands-to-html-mathjax][post]].
-#+begin_src emacs-lisp
 (after! org
   (setq org-highlight-latex-and-related '(native script entities))
   (add-to-list 'org-src-lang-modes '("latex-macros" . latex))
@@ -213,19 +141,7 @@ I have a lot of macros in my LaTeX preamble that are compatible with MathJax. To
 
   (org-eldoc-load)
   )
-#+end_src
 
-** YAS
-Not to be confused with LAAS, YAS is the snippet package I use for TAB-inserted
-snippets. It also supports the following macro for inserting a snippet (which I
-define in ~snippets/{ftype}/__~) based on file type.
-
-I also use YAS to insert a template for when I open a new text file. In the case
-of LaTeX, I have two templates; a light one for homework to compile quickly, and
-a heavy one with tikz, and a million other packages + macros for typesetting
-reports, etc. The light one is abbreviated to ~__light~, so the following is
-just a function that rips off the ~y-n~ prompt to ask the user.
-#+begin_src emacs-lisp
 (defun insert-snippet-abbr (abbr)
   "Insert the snippet abbreviated to abbr"
   (progn
@@ -239,18 +155,11 @@ just a function that rips off the ~y-n~ prompt to ask the user.
       (insert-snippet-abbr "__")
       )
   )
-#+end_src
 
-Next, we have to bind the templates to their filetypes and major modes :).
-#+begin_src emacs-lisp
 (set-file-template! "\\.tex$" :trigger #'ask-light :mode 'latex-mode)
 (set-file-template! "\\.org$" :trigger "__" :mode 'org-mode)
 (set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
-#+end_src
 
-These are a set of functions taken from tecosaur's config to make the src block
-insertion snippet work. They are used inside my snippet definitions.
-#+begin_src emacs-lisp
 (defun +yas/org-src-header-p ()
   "Determine whether `point' is within a src-block header or header-args."
   (pcase (org-element-type (org-element-context))
@@ -331,24 +240,14 @@ Return nil otherwise."
                    (lambda (a b) (> (cdr a) (cdr b))))))
 
     (car (cl-set-difference src-langs header-langs :test #'string=))))
-#+end_src
 
-** Vterm
-The shell, so I never leave emacs. To get other plugins to work properly, my ~SHELL~ envvar is set to ~bash~, but I prefer to use ~fish~ interactively:
-#+begin_src emacs-lisp
 (cl-loop for file in '("/usr/local/bin/fish" "/usr/bin/fish")
          when (file-exists-p file)
          do (progn
               (setq vterm-shell file)
               (cl-return)))
-#+end_src
 
-** Useless
-*** Elcord
-Everyone must know, of course.
-#+begin_src emacs-lisp
 (use-package! elcord
   :commands elcord-mode
   :config
   (setq elcord-use-major-mode-as-main-icon t))
-#+end_src
