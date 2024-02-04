@@ -11,6 +11,20 @@ or I run ~doom sync~. I'm currently using this file to:
 3. Emacs package (mostly Doom package) configurations
 4. Utility function definitions
 
+* Setup
+Unfortunately the Doom HEAD is unstable, and there is no release tagging system.
+I by chance found commit ~03d692f129633e3bf0bd100d91b3ebf3f77db6d1~ to be
+stable, so remember to check it out, we do so as follows:
+#+begin_src shell
+git clone --single-branch https://github.com/doomemacs/doomemacs ~/.config/emacs
+cd emacs
+git checkout 03d692f129633e3bf0bd100d91b3ebf3f77db6d1
+cd -
+~/.config/emacs/bin/doom install && ~/.config/emacs/bin/doom sync
+#+end_src
+
+Remember to install the Iosevka font! This will reveal itself as an issue when
+you run ~emacs --debug-init~
 * Doom theme definitions
 We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
 #+begin_src emacs-lisp
