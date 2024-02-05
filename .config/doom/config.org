@@ -105,6 +105,7 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
       TeX-command-extra-options "-shell-escape")
 (after! latex
   (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  (advice-add 'TeX-pdf-tools-sync-view :around #'my-display-buffer-right)
   )
 (setq +latex-viewers '(pdf-tools evince zathura okular skim sumatrapdf)
       font-latex-fontify-script nil
@@ -183,12 +184,42 @@ Uses ~spell-fu~ for spell check.
 *** PDF Tools
 For previews
 #+begin_src emacs-lisp
+(defun display-buffer-beside-selected (buffer alist)
+  "Try displaying BUFFER in a window beside the selected window.
+If there is a window below the selected one and that window
+already displays BUFFER, use that window.
+If that attempt fails and there is a non-dedicated window
+beside the selected one, use that window.
+The left or right hand side is chosen if ALIST contains
+the cons (side . left) or (side . right), respectively."
+  (let (window)
+    (or (and (setq window (window-in-direction (cdr (assq 'side alist))))
+         (eq buffer (window-buffer window))
+         (window--display-buffer buffer window 'reuse alist))
+    (and (setq window (window-in-direction (cdr (assq 'side alist))))
+         (not (window-dedicated-p window))
+         (window--display-buffer
+          buffer window 'reuse alist)))))
+
+(defun my-display-buffer-right (fun &rest args)
+  "Use `display-buffer-in-side-window' as `display-buffer-overriding-action'.
+Then run FUN with ARGS."
+  (let ((display-buffer-overriding-action '(display-buffer-beside-selected (side . right))))
+    (apply fun args)))
+
+(defun my-display-buffer-left (fun &rest args)
+  "Use `display-buffer-in-side-window' as `display-buffer-overriding-action'.
+Then run FUN with ARGS."
+  (let ((display-buffer-overriding-action '(display-buffer-beside-selected (side . left))))
+    (apply fun args)))
+
 (use-package! pdf-tools
   :defer t
   :config
   (setq pdf-sync-backward-display-action t)
   (setq pdf-sync-forward-display-action t)
   (setq-default pdf-view-display-size 'fit-page)
+  (advice-add 'pdf-sync-backward-search-mouse :around #'my-display-buffer-left)
   )
 #+end_src
 ** Common Lisp
