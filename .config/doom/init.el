@@ -146,8 +146,8 @@
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       (latex             ; writing papers in Emacs has never been so fun
-        +cdlatex)
+       (latex)             ; writing papers in Emacs has never been so fun
+        ;;+latexmk)
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
@@ -158,13 +158,13 @@
        (org                         ; organize your plain life in plain text
         +dragndrop                  ; drag & drop files/images into org buffers
         ;;+hugo                     ; use Emacs for hugo blogging
-        +noter                      ; enhanced PDF notetaking
+        ;; +noter                      ; enhanced PDF notetaking
         ;;+jupyter                    ; ipython/jupyter support for babel
         +pandoc                     ; export-with-pandoc support
-        +gnuplot                    ; who doesn't like pretty pictures
+        +gnuplot)                   ; who doesn't like pretty pictures
         ;;+pomodoro                 ; be fruitful with the tomato technique
-        +present                    ; using org-mode for presentations
-        +roam2)                     ; wander around notes       ;;plantuml          ; diagrams for confusing people more
+        ;;+present                    ; using org-mode for presentations
+        ;;+roam2)                     ; wander around notes       ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp +pyright)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
