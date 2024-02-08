@@ -6,7 +6,9 @@ return {
     local bufferline = require("bufferline");
     bufferline.setup({
       options = {
-        style_preset = bufferline.style_preset.no_italic,
+        -- style_preset = bufferline.style_preset.no_italic,
+        show_buffer_icons = false,
+        buffer_close_icon = '×'
       },
     });
   end,
