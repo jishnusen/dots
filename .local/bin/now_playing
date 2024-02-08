@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import sys
+
+import gi
+gi.require_version('Playerctl', '2.0')
+from gi.repository import Playerctl, GLib
+
+manager = Playerctl.PlayerManager()
+
+playing = False
+
+def on_metadata(player, *_):
+    metadata = player.props.metadata
+    keys = metadata.keys()
+    playing = player.props.status == "Playing"
+    if 'xesam:artist' in keys and 'xesam:title' in keys:
+        print('{}{} - {}%{{u-}}'.format("%{u#D4BBFF}%{+u}" if playing else "", metadata['xesam:artist'][0], metadata['xesam:title']))
+        sys.stdout.flush()
+
+
+def init_player(name):
+    # choose if you want to manage the player based on the name
+    player = Playerctl.Player.new_from_name(name)
+    player.connect('playback-status::playing', on_metadata, manager)
+    player.connect('playback-status::paused', on_metadata, manager)
+    player.connect('metadata', on_metadata, manager)
+    manager.manage_player(player)
+    if player.props.status != "Stopped":
+        on_metadata(player)
+
+
+def on_name_appeared(_, name):
+    init_player(name)
+
+def on_player_vanished(_, player):
+    print()
+    for player in manager.props.players:
+        on_metadata(player)
+
+
+manager.connect('name-appeared', on_name_appeared)
+manager.connect('player-vanished', on_player_vanished)
+
+for name in manager.props.player_names:
+    init_player(name)
+
+main = GLib.MainLoop()
+main.run()

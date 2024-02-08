@@ -1,3 +1,9 @@
+#!/bin/bash
+
 alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias sbcl='rlwrap sbcl'
 alias e=$EDITOR
+alias aura='sudo aura'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias backup='rsync -au --delete --info=progress2 --info=name0 Documents/ /mnt/850evo/Documents/'

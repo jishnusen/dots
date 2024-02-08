@@ -1,3 +1,0 @@
-setxkbmap -option "caps:swapescape" &
-lxpanel &
-/usr/libexec/kf5/polkit-kde-authentication-agent-1 &

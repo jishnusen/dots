@@ -1,0 +1,15 @@
+#!/bin/bash
+
+stdout=$(mktemp)
+stderr=$(mktemp)
+
+aura --color=always $@ > >(tee -a $stdout) 2> >(tee -a $stderr >&2)
+
+
+if cat $stdout | grep -q "^aura >>=.*You cannot perform this operation without using sudo."; then
+  sudo aura $@
+elif cat $stderr | grep -q "^.*error:.*you cannot perform this operation unless you are root.$"; then
+  sudo aura $@
+fi
+
+rm $stdout $stderr

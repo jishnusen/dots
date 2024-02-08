@@ -1,6 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    "williamboman/mason.nvim",
     "folke/neodev.nvim",
     "folke/trouble.nvim",
     "nvim-tree/nvim-web-devicons", -- trouble.nvim
@@ -8,6 +9,7 @@ return {
     "ray-x/lsp_signature.nvim",
   },
   config = function()
+    require("mason").setup();
     require("neodev").setup({});
     local lspconfig = require('lspconfig');
     lspconfig.pyright.setup({});

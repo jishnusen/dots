@@ -1,0 +1,4 @@
+set output_plugin=jack
+add /mnt/850evo/Music
+
+colorscheme oxocarbon
