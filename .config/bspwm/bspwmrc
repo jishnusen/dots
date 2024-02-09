@@ -20,3 +20,13 @@ bspc config gapless_monocle      true
 
 bspc rule -a Emacs state=tiled
 bspc rule -a iwgtk state=floating
+bspc rule -a 1Password state=floating center=true
+bspc rule -a discord desktop=IX
+
+# aesthetic cmus location on desktop X
+# can only have 1 cmus at a time anyways
+pgrep -x cmus > /dev/null || \
+  (bspc rule -a Alacritty -o desktop="X" \
+                             state=floating \
+                             rectangle="720x620+30+790" \
+                             && alacritty -e cmus)
