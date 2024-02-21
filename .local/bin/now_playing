@@ -17,7 +17,7 @@ def on_metadata(player, *_):
     keys = metadata.keys()
     playing = player.props.status == "Playing"
     if 'xesam:artist' in keys and 'xesam:title' in keys:
-        print('{}{} - {}%{{u-}}'.format("%{u#D4BBFF}%{+u}" if playing else "",
+        print('{}{} - {}%{{u-}}'.format("%{u#eba0ac}%{+u}" if playing else "",
                                         metadata['xesam:artist'][0],
                                         metadata['xesam:title']),
               flush=True)
