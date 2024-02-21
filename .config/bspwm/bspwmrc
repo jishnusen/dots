@@ -31,6 +31,7 @@ bspc rule -a discord desktop='^9'
 bspc rule -a "Google-chrome" desktop='^2' follow=on
 bspc rule -a *:*:"Picture in picture" state=floating rectangle=512x288+2000+1100
 bspc rule -a cmus desktop="X" state=floating rectangle="720x620+32+775"
+bspc rule -a ncmpcpp desktop="X" state=floating rectangle="720x620+32+775"
 
 # aesthetic cmus location on desktop X
 # can only have 1 cmus at a time anyways

@@ -1,7 +1,10 @@
 #!/bin/sh
 
-if [ -z "$(tmux list-clients -t cmus)" ]; then
-  alacritty --class Alacritty,cmus --title "C* Music Player" -e $HOME/.local/bin/tmux_cmus.sh
+app=$1
+title=$2
+
+if [ -z "$(tmux list-clients -t $app)" ]; then
+  alacritty --class Alacritty,$app --title "$title" -e /bin/sh -c "tmux new -As $app \"$app\"\; set -g status off"
 else
-  xdotool windowactivate $(xdotool search --class "cmus")
+  xdotool windowactivate $(xdotool search --class $1)
 fi
