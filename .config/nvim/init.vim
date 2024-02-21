@@ -13,6 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 require("lazy").setup(
@@ -42,6 +43,7 @@ EOF
 " appearance
 set number
 set termguicolors
+colorscheme catppuccin
 
 " keymappings
 nnoremap j gj
@@ -67,3 +69,12 @@ augroup formatting
   autocmd FileType python set ai sw=4 ts=4 sta et fo=croql
 augroup END
 
+" vimtex
+let g:vimtex_compiler_latexmk_engines = {
+    \ '_'                : '-xelatex',
+    \}
+let g:vimtex_view_method = 'zathura'
+augroup vimtex
+  autocmd!
+  autocmd User VimtexEventView call b:vimtex.viewer.xdo_focus_vim()
+augroup END
