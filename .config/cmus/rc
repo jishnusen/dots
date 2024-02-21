@@ -5,4 +5,4 @@ set mixer.alsa.channel=Master
 
 add /mnt/850evo/Music
 
-colorscheme oxocarbon
+colorscheme base16-dark
