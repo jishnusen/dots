@@ -7,7 +7,11 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
+
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " colors
 Plug 'mhartington/oceanic-next'
@@ -40,8 +44,8 @@ nnoremap J 5gj
 nnoremap K 5gk
 nnoremap L $
 nnoremap H ^
-nnoremap <Leader><Leader> :bn<CR>
-nnoremap <Leader>. :bp<CR>
+nnoremap <Leader><Leader> :FZF<CR>
+nnoremap <Leader>/ :RG<CR>
 nnoremap <Leader>w :bd<CR>
 nnoremap ; :
 nnoremap <Leader>, :ls<CR>:b<Space>
@@ -72,7 +76,6 @@ let g:vimtex_compiler_latexmk_engines = {
     \}
 let g:vimtex_syntax_custom_cmds = [
       \ {'name': 'bm'  , 'mathmode': 1, 'argstyle': 'bold', 'conceal': 1},
-      "\ Unicode:,
       \ {'name': 'R'   , 'mathmode': 1, 'concealchar': 'ℝ'},
       \ {'name': 'N'   , 'mathmode': 1, 'concealchar': 'ℕ'},
       \ {'name': 'Z'   , 'mathmode': 1, 'concealchar': 'ℤ'},
@@ -88,7 +91,6 @@ lua << EOF
 local ts_lang = { "lua", "vim", "vimdoc", "python", "query" }
 
 require'nvim-treesitter.configs'.setup {
-  -- Modules and its options go here
   ensure_installed = ts_lang,
   highlight = { enable = true }
 }
