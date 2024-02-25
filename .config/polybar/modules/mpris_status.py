@@ -17,10 +17,14 @@ def on_metadata(player, *_):
     keys = metadata.keys()
     playing = player.props.status == "Playing"
     if 'xesam:artist' in keys and 'xesam:title' in keys:
-        print('{}{} - {}%{{u-}}'.format("%{u#eba0ac}%{+u}" if playing else "",
-                                        metadata['xesam:artist'][0],
-                                        metadata['xesam:title']),
-              flush=True)
+        artist = metadata['xesam:artist'][0]
+        title = metadata['xesam:title']
+        if len(title) > 30:
+            title = title[:30] + "…"
+        status = '{}{} - {}%{{u-}}'.format("%{u#eba0ac}%{+u}" if playing else "",
+                                        artist,
+                                        title)
+        print(status, flush=True)
 
 
 def init_player(name):
