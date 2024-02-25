@@ -8,12 +8,14 @@ endif
 
 call plug#begin()
 Plug 'lervag/vimtex', { 'for': ['tex'] }
+Plug 'justinmk/vim-sneak'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " colors
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -30,7 +32,8 @@ set number
 if (has("termguicolors"))
  set termguicolors
 endif
-colorscheme OceanicNext
+" colorscheme OceanicNext
+colorscheme catppuccin-mocha
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 set ttimeoutlen=5
@@ -38,6 +41,7 @@ filetype plugin indent on
 
 " keymappings
 let g:mapleader = " "
+let g:sneak#s_next = 1
 nnoremap j gj
 nnoremap k gk
 nnoremap J 5gj
@@ -50,6 +54,11 @@ nnoremap <Leader>w :bd<CR>
 nnoremap ; :
 nnoremap <Leader>, :ls<CR>:b<Space>
 nnoremap Q <nop>
+nnoremap f <Plug>Sneak_f
+nnoremap F <Plug>Sneak_F
+nnoremap t <Plug>Sneak_t
+nnoremap T <Plug>Sneak_T
+highlight Sneak gui=underline cterm=underline ctermfg=red guifg=red ctermbg=None guibg=None
 set clipboard=unnamed,unnamedplus
 
 " formatting
@@ -91,7 +100,7 @@ lua << EOF
 local ts_lang = { "lua", "vim", "vimdoc", "python", "query" }
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = ts_lang,
+  ensure_installed = "all",
   highlight = { enable = true }
 }
 EOF
