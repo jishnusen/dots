@@ -3,6 +3,6 @@ set dsp.alsa.device=default
 set mixer.alsa.device=default
 set mixer.alsa.channel=Master
 
-add /mnt/850evo/Music
+add ~/Music
 
 colorscheme base16-dark
