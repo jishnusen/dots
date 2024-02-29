@@ -8,11 +8,14 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun
+	rofi -show combi -combi-modi window,drun
+
+super + space
+	rofi -show calc
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd && notify-send "reloaded sxhkd"
 
 super + shift + s
   maim -s | xclip -selection clipboard -t image/png -i
