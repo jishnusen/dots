@@ -48,11 +48,12 @@ nnoremap J 5gj
 nnoremap K 5gk
 nnoremap L $
 nnoremap H ^
-nnoremap <Leader><Leader> :FZF<CR>
+nnoremap <Leader><Leader> :Files<CR>
+nnoremap <Leader>. :execute "Files " . GetCurrentDirectory()<CR>
 nnoremap <Leader>/ :RG<CR>
 nnoremap <Leader>w :bd<CR>
 nnoremap ; :
-nnoremap <Leader>, :ls<CR>:b<Space>
+nnoremap <Leader>, :Buffers<CR>
 nnoremap Q <nop>
 nnoremap f <Plug>Sneak_f
 nnoremap F <Plug>Sneak_F
@@ -101,7 +102,7 @@ local ts_lang = { "lua", "vim", "vimdoc", "python", "query" }
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  highlight = { enable = true }
+  highlight = { enable = true, disable = { "latex", "tex" } }
 }
 EOF
 
@@ -116,3 +117,15 @@ set statusline+=\ %{&fileformat}
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ \ %{FugitiveStatusline()}
 set laststatus=2
+
+
+" Utils
+function! GetCurrentDirectory()
+    " Get the full path of the current file
+    let current_file = expand("%:p")
+
+    " Extract the directory part
+    let current_directory = fnamemodify(current_file, ":h")
+
+    return current_directory
+endfunction
