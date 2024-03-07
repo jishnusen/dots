@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-	alacritty
+  st
 
 # program launcher
 super + d
-	rofi -show combi -combi-modi window,drun
+	rofi -show combi -combi-modi window,drun,power-menu:rofi-power-menu
 
 super + space
 	rofi -show calc

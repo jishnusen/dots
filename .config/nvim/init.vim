@@ -17,6 +17,9 @@ Plug 'junegunn/fzf.vim'
 " colors
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
+
+" NVIM lang helpers
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
@@ -29,13 +32,12 @@ call plug#end()
 syntax on
 set hidden " allow hidden unsaved buffers
 set number
+set title
 if (has("termguicolors"))
  set termguicolors
 endif
 " colorscheme OceanicNext
 colorscheme catppuccin-mocha
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
 set ttimeoutlen=5
 filetype plugin indent on
 
@@ -64,7 +66,7 @@ set clipboard=unnamed,unnamedplus
 
 " formatting
 "" basic
-set textwidth=80 tabstop=2 shiftwidth=2 expandtab
+set textwidth=80 tabstop=8 shiftwidth=2 expandtab
 "" real tabs within line
 inoremap <Silent> <Tab> <C-R>=(col('.') > (matchend(getline('.'), '^\s*') + 1))?'<C-V><C-V><Tab>':'<Tab>'<CR>
 "" autocmds
@@ -104,6 +106,12 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   highlight = { enable = true, disable = { "latex", "tex" } }
 }
+EOF
+
+" LSP
+lua << EOF
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup {}
 EOF
 
 set statusline=
