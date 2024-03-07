@@ -26,15 +26,22 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+# electron garbage
+bspc desktop '^9' -l monocle
+bspc rule -a discord desktop='^9'
+bspc rule -a spotify desktop='^9'
+
 bspc rule -a Emacs state=tiled
 bspc rule -a iwgtk state=floating
 bspc rule -a 1Password state=floating center=true
-bspc rule -a discord desktop='^9'
 bspc rule -a "Google-chrome" desktop='^2' follow=on
 bspc rule -a *:*:"Picture in picture" state=floating rectangle="512x288+2000+1100" border=off
+bspc rule -a zenity:zenity:Progress state=floating
+bspc rule -a *:*:"Friends List" state=floating
 bspc rule -a cmus desktop='^10' state=floating rectangle="720x620+32+775"
 bspc rule -a ncmpcpp desktop='^10' state=floating rectangle="720x620+32+775"
-bspc rule -a zoom desktop='^4' state=floating center=on follow=on border=off
+bspc rule -a zoom desktop='^4' state=floating center=on follow=on
+bspc rule -a zoom:*:"zoom" desktop='^4' border=off
 bspc rule -a art_viewer desktop='^10' state=floating follow=off focus=off
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
