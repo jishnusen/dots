@@ -12,6 +12,9 @@ pgrep -x 1password > /dev/null || fork_it 1password --silent
 pgrep -x playerctld > /dev/null || fork_it playerctld
 pgrep -x dunst > /dev/null || fork_it dunst
 
+pgrep -x window_gc.sh | xargs kill -9
+~/.config/bspwm/window_gc.sh
+
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config border_width         3
@@ -36,7 +39,7 @@ bspc rule -a iwgtk state=floating
 bspc rule -a 1Password state=floating center=true
 bspc rule -a "Google-chrome" desktop='^2' follow=on
 bspc rule -a *:*:"Picture in picture" state=floating rectangle="512x288+2000+1100" border=off
-bspc rule -a zenity:zenity:Progress state=floating
+bspc rule -a zenity state=floating
 bspc rule -a *:*:"Friends List" state=floating
 bspc rule -a cmus desktop='^10' state=floating rectangle="720x620+32+775"
 bspc rule -a ncmpcpp desktop='^10' state=floating rectangle="720x620+32+775"
