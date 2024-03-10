@@ -13,4 +13,5 @@ input_rates=$(pw-top -b -n2 | rg "^R.*" \
               | tr '\n' ',' \
               | sed 's/,$/\n/' \
               )
-echo "$output_rate Hz ($input_rates)"
+echo -ne "$output_rate Hz"
+[ ! -z "$input_rates" ] && echo " ($input_rates)"

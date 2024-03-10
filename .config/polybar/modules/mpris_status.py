@@ -26,6 +26,16 @@ def on_metadata(player, *_):
                                         title)
         print(status, flush=True)
 
+def player_prio(p):
+    match p.props.status:
+        case "Playing":
+            return 3
+        case "Paused":
+            return 2
+        case "Stopped":
+            return 1
+        case _:
+            return 0
 
 def init_player(name):
     # choose if you want to manage the player based on the name
@@ -35,7 +45,7 @@ def init_player(name):
     player.connect('playback-status::stopped', on_player_vanished, manager)
     player.connect('metadata', on_metadata, manager)
     manager.manage_player(player)
-    if player.props.status != "Stopped":
+    for player in sorted(manager.props.players, key = player_prio):
         on_metadata(player)
 
 
