@@ -1,0 +1,12 @@
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKsjYafbdknBFdrx8bZ7JkN5ZFPKz3VO2md0t5ieY2L6
+  name = Jishnu Sen
+  email = jishnu1@gmail.com
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+[init]
+  defaultBranch = main
