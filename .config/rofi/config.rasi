@@ -1,6 +1,6 @@
 configuration {
     modes: "window,drun,run,calc,combi";
-    font: "Iosevka 12";
+    font: "PragmataPro 12";
     location: 0;
     yoffset: 0;
     xoffset: 0;
