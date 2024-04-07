@@ -18,8 +18,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'kepano/flexoki-neovim'
+Plug 'jacksonludwig/vim-earl-grey'
 
 " NVIM lang helpers
+Plug 'williamboman/mason.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -28,6 +30,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 call plug#end()
 
 syntax on
@@ -102,8 +105,6 @@ augroup END
 
 " TS
 lua << EOF
-local ts_lang = { "lua", "vim", "vimdoc", "python", "query" }
-
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   highlight = { enable = true, disable = { "latex", "tex" } }
@@ -112,8 +113,10 @@ EOF
 
 " LSP
 lua << EOF
+require('mason').setup {}
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
+lspconfig.tsserver.setup {}
 EOF
 
 set statusline=
