@@ -7,6 +7,7 @@ output_rate=$(cat "/proc/asound/card$card/pcm0p/sub0/hw_params" | grep rate | cu
 
 input_rates=$(pw-top -b -n2 | rg "^R.*" \
               | rg -v "alsa_output" \
+              | rg "cmus|spotify|chromium" \
               | tr -s ' ' \
               | cut -f 10,12,14 -d ' ' \
               | awk '{ s++; print $1 " @ " $2 "Hz" }' \
