@@ -17,6 +17,7 @@ Plug 'junegunn/fzf.vim'
 " colors
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
+Plug 'kepano/flexoki-neovim'
 
 " NVIM lang helpers
 Plug 'neovim/nvim-lspconfig'
@@ -37,7 +38,8 @@ if (has("termguicolors"))
  set termguicolors
 endif
 " colorscheme OceanicNext
-colorscheme catppuccin-mocha
+" colorscheme catppuccin-latte
+colorscheme flexoki-light
 set ttimeoutlen=5
 filetype plugin indent on
 
