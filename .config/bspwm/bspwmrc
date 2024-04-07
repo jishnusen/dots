@@ -12,8 +12,8 @@ pgrep -x 1password > /dev/null || fork_it 1password --silent
 pgrep -x playerctld > /dev/null || fork_it playerctld
 pgrep -x dunst > /dev/null || fork_it dunst
 
-pgrep -x window_gc.sh | xargs kill -9
-~/.config/bspwm/window_gc.sh
+pgrep -x window_gc.sh | xargs -r kill -9
+fork_it ~/.config/bspwm/window_gc.sh
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -33,6 +33,10 @@ bspc config gapless_monocle      true
 bspc desktop '^9' -l monocle
 bspc rule -a discord desktop='^9'
 bspc rule -a spotify desktop='^9'
+
+# steam
+bspc rule -a steamwebhelper desktop='^8' follow=on
+bspc rule -a steam desktop='^8' follow=on
 
 bspc rule -a Emacs state=tiled
 bspc rule -a iwgtk state=floating
