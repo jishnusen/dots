@@ -14,12 +14,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" colors
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'mhartington/oceanic-next'
-Plug 'kepano/flexoki-neovim'
-Plug 'jacksonludwig/vim-earl-grey'
-
 " NVIM lang helpers
 Plug 'williamboman/mason.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -42,7 +36,8 @@ if (has("termguicolors"))
 endif
 " colorscheme OceanicNext
 " colorscheme catppuccin-latte
-colorscheme flexoki-light
+set background=light
+colorscheme modus_operandi
 set ttimeoutlen=5
 filetype plugin indent on
 
@@ -79,6 +74,7 @@ augroup formatting
   autocmd!
   autocmd BufWritePre * :%s/\s\+$//e
   autocmd FileType python set ai sw=4 ts=4 sta et fo=croql
+  autocmd FileType c set ai sw=8 ts=8 noet
 augroup END
 
 augroup appearance
@@ -107,7 +103,7 @@ augroup END
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  highlight = { enable = true, disable = { "latex", "tex" } }
+  highlight = { enable = true, disable = { "java", "latex", "tex" } }
 }
 EOF
 

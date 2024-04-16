@@ -23,11 +23,11 @@ set color_win_cur_sel_bg=darkgray
 set color_win_cur_sel_fg=blue
 
 # First song in tree track
-set color_win_inactive_sel_bg=black
+set color_win_inactive_sel_bg=gray
 set color_win_inactive_sel_fg=default
 
 # Song playing in tree track
-set color_win_inactive_cur_sel_bg=black
+set color_win_inactive_cur_sel_bg=gray
 set color_win_inactive_cur_sel_fg=blue
 
 # Playing in sorted view

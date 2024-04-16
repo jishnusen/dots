@@ -9,5 +9,5 @@ __err_code() {
 
 [[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
 [[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
-PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] $(__err_code)\$\[\033[00m\] '
+PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1) $(__err_code)\[\033[01;34m\]\$\[\033[00m\] '
 GIT_PS1_SHOWDIRTYSTATE=1
