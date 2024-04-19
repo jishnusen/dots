@@ -10,6 +10,9 @@ call plug#begin()
 Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'justinmk/vim-sneak'
 
+" colors
+Plug 'miikanissi/modus-themes.nvim'
+
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -38,6 +41,7 @@ endif
 " colorscheme catppuccin-latte
 set background=light
 colorscheme modus_operandi
+set cursorline
 set ttimeoutlen=5
 filetype plugin indent on
 
