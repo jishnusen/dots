@@ -6,7 +6,8 @@ Xft.lcdfilter:  lcddefault
 Xft.rgba:       rgb
 
 
-Xcursor.size:	16
+Xcursor.theme: macOS-BigSur
+Xcursor.size:	24
 
 *font: PragmataPro:size=14
 
