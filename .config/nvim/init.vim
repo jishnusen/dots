@@ -107,7 +107,7 @@ augroup END
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  highlight = { enable = true, disable = { "java", "latex", "tex", "cpp" } }
+  highlight = { enable = true, disable = { "java", "latex", "tex", "cpp", "html" } }
 }
 EOF
 
