@@ -23,9 +23,8 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring', { 'for': ['vim', 'html'] }
 Plug 'williamboman/mason.nvim'
 Plug 'neovim/nvim-lspconfig'
 
+" utilities
 Plug 'kylechui/nvim-surround'
-
-" tpope :goat:
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
