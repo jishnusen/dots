@@ -42,6 +42,7 @@ bspc rule -a Emacs state=tiled
 bspc rule -a iwgtk state=floating
 bspc rule -a 1Password state=floating center=true
 bspc rule -a "Google-chrome" desktop='^2' follow=on
+bspc rule -a firefox desktop='^2' follow=on
 bspc rule -a *:*:"Picture in picture" state=floating rectangle="512x288+2000+1100" border=off
 bspc rule -a zenity state=floating
 bspc rule -a *:*:"Friends List" state=floating
