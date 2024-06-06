@@ -18,13 +18,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " NVIM lang helpers
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'JoosepAlviste/nvim-ts-context-commentstring', { 'for': ['vim', 'html'] }
 Plug 'williamboman/mason.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
+Plug 'kylechui/nvim-surround'
 
 " tpope :goat:
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
@@ -43,6 +44,7 @@ set background=light
 colorscheme modus_operandi
 set cursorline
 set ttimeoutlen=5
+set formatoptions+=/
 filetype plugin indent on
 
 " keymappings
@@ -107,9 +109,12 @@ augroup END
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  highlight = { enable = true, disable = { "java", "latex", "tex", "cpp", "html" } }
+  highlight = { enable = true, disable = { "java", "latex", "tex", "cpp", "c", "html" } },
+  indent = { enable = false },
+  incremental_selection = { enable = false },
 }
 EOF
+let g:skip_ts_context_commentstring_module = 0
 
 " LSP
 lua << EOF
@@ -117,6 +122,11 @@ require('mason').setup {}
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
+EOF
+
+" surround
+lua << EOF
+require'nvim-surround'.setup {}
 EOF
 
 set statusline=
